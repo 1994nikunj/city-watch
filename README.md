@@ -1,6 +1,8 @@
 # City Watch: A web-based reporting tool
 
-### CS-545-WS1: Human Computer Interaction
+> Stevens Institute of Technology
+
+> CS-545-WS1: Human Computer Interaction
 
 ## PROJECT DESCRIPTION
 - The project is a `web-based` reporting tool aimed at improving engagement among local Hoboken residents, including students. The app will provide an accessible platform for individuals to report issues or concerns in their community.
