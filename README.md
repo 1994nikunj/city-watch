@@ -1,2 +1,2 @@
 # city-watch
-The project is an academic project for the Human-Computer-Interacion course. It's a web-based reporting tool aimed at improving engagement among local Hoboken residents, including students.
+A team project, developed for the Human-Computer-Interaction course with the goal of enhancing engagement among the local residents of Hoboken, which includes students.
