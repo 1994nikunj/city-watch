@@ -22,7 +22,7 @@ This application is built using [`MERN`](https://www.mongodb.com/mern-stack) sta
 ### Step I. Clone URL
 ```shell
 # Get the repo using git command or download using github-url and unzip the contents in a directory:
-> git clone https://github.com/1994nikunj/openglass-web-app
+> git clone https://github.com/1994nikunj/city-watch
 ```
 
 ### Step II. Installing dependencies

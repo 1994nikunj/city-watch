@@ -1,64 +1,53 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import Login from './components/Login';
+import Signup from './components/Signup';
+
 import Home from './components/Home';
+
+import AllReports from './components/AllReports.js';
+import Report from './components/Report';
+import AddReport from './components/AddReport';
+
+import AllEvents from './components/AllEvents.js';
+import Event from './components/Event';
+import AddEvent from './components/AddEvent';
+
+import Help from './components/Help';
+import Profile from './components/Profile';
+
 import NotFound from './components/NotFound';
-import EventList from './components/EventList';
-import VenueList from './components/VenueList';
-import EventDetails from './components/EventDetails';
-import VenueDetails from './components/VenueDetails';
-import AttractionList from './components/AttractionList';
-import AttractionDetails from './components/AttractionDetails';
 
-import { Button } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import AttractionsIcon from '@mui/icons-material/Attractions';
-import PlaceIcon from '@mui/icons-material/Place';
-import LocalActivityIcon from '@mui/icons-material/LocalActivity';
-
-import logo from './img/ticketmaster-logo.png';
 import './App.css';
 
 const App = () => {
 	return (
 		<Router>
 			<div className='App'>
-				<header className='App-header'>
-					<img src={logo} className='App-logo' alt='logo' />
-					<h1 className='App-title'>Welcome to Ticketmaster!</h1>
-					<Button
-						variant="outlined"
-						onClick={() => { window.location.href = '/' }}
-						sx={buttonCSS}
-						startIcon={<HomeIcon />}>Home</Button>
-					<Button
-						variant="outlined"
-						onClick={() => { window.location.href = '/events?page=0' }}
-						sx={buttonCSS}
-						startIcon={<LocalActivityIcon />}>Events</Button>
-					<Button
-						variant="outlined"
-						onClick={() => { window.location.href = '/attractions?page=0' }}
-						sx={buttonCSS}
-						startIcon={<AttractionsIcon />}>Attractions</Button>
-					<Button
-						variant="outlined"
-						onClick={() => { window.location.href = '/venues?page=0' }}
-						sx={buttonCSS}
-						startIcon={<PlaceIcon />}>Venues</Button>
-				</header>
-
 				<div className='App-body'>
 					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/events' element={<EventList />} />
-						<Route path='/events/:id' element={<EventDetails />} />
-						<Route path='/attractions' element={<AttractionList />} />
-						<Route path='/attractions/:id' element={<AttractionDetails />} />
-						<Route path='/venues' element={<VenueList />} />
-						<Route path='/venues/:id' element={<VenueDetails />} />
-						<Route path='/venues/:id' element={<VenueDetails />} />
-						<Route path="*" element={<NotFound />} />
+						<Route path='/' element={<Login />} />				{/* Login Page */}
+						<Route path='/signup' element={<Signup />} />		{/* Sign Up Page */}
+
+						<Route path='/home' element={<Home />} />			{/* Home Page */}
+
+						{/* Reports */}
+						<Route path='/reports' element={<AllReports />} /> 	{/* All Reports Page */}
+						<Route path='/report/:id' element={<Report />} />	{/* Single Report Page */}
+						<Route path='/add-report' element={<AddReport />} />{/* Add Report Page */}
+
+						{/* Events */}
+						<Route path='/events' element={<AllEvents />} />	{/* All Events Page */}
+						<Route path='/event/:id' element={<Event />} />		{/* Single Event Page */}
+						<Route path='/add-event' element={<AddEvent />} />	{/* Add Event Page */}
+
+						<Route path='/help' element={<Help />} />			{/* Help Page */}
+						<Route path='/profile' element={<Profile />} />		{/* Profile Page */}
+
+						<Route path='/signout' />
+						<Route path="*" element={<NotFound />} />			{/* Page Not Found */}
+
 					</Routes>
 				</div>
 			</div>
