@@ -1,4 +1,8 @@
+<img src="src/assets/logo.png" align="right" height=100/>
+
+----
 # City Watch: A web-based reporting tool
+
 
 > Stevens Institute of Technology
 
