@@ -6,7 +6,7 @@ import {
 	Box
 } from '@mui/material';
 
-const Help = () => {
+const Feedback = () => {
 	return (
 		<div style={{ position: 'relative' }}>
 			<Header />
@@ -27,7 +27,7 @@ const Help = () => {
 						fontSize: '2rem',
 						m: '1rem 2rem'
 					}}>
-					Help Page!
+					Feedback Page
 				</Box>
 				{/* YOUR CODE GOES HERE*/}
 			</Box>
@@ -36,4 +36,4 @@ const Help = () => {
 	);
 }
 
-export default Help;
+export default Feedback;

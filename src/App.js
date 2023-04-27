@@ -16,6 +16,7 @@ import AddEvent from './components/AddEvent';
 
 import Help from './components/Help';
 import Profile from './components/Profile';
+import Feedback from './components/Feedback';
 
 import NotFound from './components/NotFound';
 
@@ -44,6 +45,7 @@ const App = () => {
 
 						<Route path='/help' element={<Help />} />			{/* Help Page */}
 						<Route path='/profile' element={<Profile />} />		{/* Profile Page */}
+						<Route path='/feedback' element={<Feedback />} />	{/* Feedback Page */}
 
 						<Route path='/signout' />
 						<Route path="*" element={<NotFound />} />			{/* Page Not Found */}

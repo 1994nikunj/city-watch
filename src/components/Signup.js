@@ -4,7 +4,7 @@ import {
     TextField,
     Paper,
     Button
-} from '@material-ui/core';
+} from '@mui/material';
 
 const SignupPage = () => {
 
@@ -34,7 +34,7 @@ const SignupPage = () => {
                     </Grid>
                     <Grid
                         item xs={12}
-                        style={{width: '100%', textAlign: 'left'}}
+                        style={{ width: '100%', textAlign: 'left' }}
                     >
                         <label>Email</label>
                         <TextField

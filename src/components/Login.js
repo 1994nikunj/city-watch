@@ -6,7 +6,7 @@ import {
 	FormControlLabel,
 	Paper,
 	Button
-} from '@material-ui/core';
+} from '@mui/material';
 
 const Login = () => {
 	const [checked, setChecked] = React.useState(true);
