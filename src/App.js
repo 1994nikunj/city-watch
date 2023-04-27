@@ -17,7 +17,7 @@ import AddEvent from './components/AddEvent';
 import Help from './components/Help';
 import Profile from './components/Profile';
 
-import NotFound from './components/NotFound';
+import NotFound from './components/NotFound'; 
 
 import './App.css';
 
