@@ -104,29 +104,17 @@ const Footer = () => {
 						alignItems: 'center',
 						mr: 'auto'
 					}}>
-					<Link to="/reports">
-						All Reports
-					</Link>
+					<Link to="/reports">All Reports</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">
-						All Events
-					</Link>
+					<Link to="/reports">All Events</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">
-						Help
-					</Link>
+					<Link to="/reports">Help</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">
-						SignUp
-					</Link>
+					<Link to="/reports">SignUp</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">
-						Login
-					</Link>
+					<Link to="/reports">Login</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">
-						Logout
-					</Link>
+					<Link to="/reports">Logout</Link>
 				</Box>
 
 				{/* Social Icons */}
@@ -135,42 +123,12 @@ const Footer = () => {
 						display: 'flex',
 						alignItems: 'center',
 					}}>
-					<Link href="https://www.instagram.com/">
-						<CardMedia
-							image={instagramIcon}
-							alt="Instagram"
-							sx={socialIconStyle} />
-					</Link>
-					<Link href="https://www.facebook.com/">
-						<CardMedia
-							image={facebookIcon}
-							alt="Facebook"
-							sx={socialIconStyle} />
-					</Link>
-					<Link href="https://twitter.com/">
-						<CardMedia
-							image={twitterIcon}
-							alt="Twitter"
-							sx={socialIconStyle} />
-					</Link>
-					<Link href="https://www.linkedin.com/">
-						<CardMedia
-							image={linkedinIcon}
-							alt="LinkedIn"
-							sx={socialIconStyle} />
-					</Link>
-					<Link href="https://www.youtube.com/">
-						<CardMedia
-							image={youtubeIcon}
-							alt="Youtube"
-							sx={socialIconStyle} />
-					</Link>
-					<Link href="https://www.snapchat.com/">
-						<CardMedia
-							image={snapchatIcon}
-							alt="Snapchat"
-							sx={socialIconStyle} />
-					</Link>
+					<a href="https://www.instagram.com/"><CardMedia image={instagramIcon} alt="Instagram" sx={socialIconStyle} /></a>
+					<a href="https://www.facebook.com/"><CardMedia image={facebookIcon} alt="Facebook" sx={socialIconStyle} /> </a>
+					<a href="https://twitter.com/"> <CardMedia image={twitterIcon} alt="Twitter" sx={socialIconStyle} /> </a>
+					<a href="https://www.linkedin.com/"> <CardMedia image={linkedinIcon} alt="LinkedIn" sx={socialIconStyle} /> </a>
+					<a href="https://www.youtube.com/"> <CardMedia image={youtubeIcon} alt="Youtube" sx={socialIconStyle} /> </a>
+					<a href="https://www.snapchat.com/"> <CardMedia image={snapchatIcon} alt="Snapchat" sx={socialIconStyle} /> </a>
 				</Box>
 			</Box>
 
@@ -200,13 +158,13 @@ const Footer = () => {
 						Design & Development Team:
 					</Typography>
 					<Typography variant="body1" component="div" >
-						<Link href="https://github.com/aditya9398">Aditya SanjayKumar Singh</Link>
+						<a href="https://github.com/aditya9398">Aditya SanjayKumar Singh</a>
 						&nbsp; | &nbsp;
-						<Link href="https://github.com/ArchiPatel8">Archi Dilip Patel</Link>
+						<a href="https://github.com/ArchiPatel8">Archi Dilip Patel</a>
 						&nbsp; | &nbsp;
-						<Link href="https://github.com/arandomdude24">Ishaan Patel</Link>
+						<a href="https://github.com/arandomdude24">Ishaan Patel</a>
 						&nbsp; | &nbsp;
-						<Link href="https://github.com/aditya9398">Nikunj Sharma</Link>
+						<a href="https://github.com/1994nikunj">Nikunj Sharma</a>
 					</Typography>
 				</Box>
 				<Box
