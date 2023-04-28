@@ -36,11 +36,13 @@ const App = () => {
 						{/* Reports */}
 						<Route path='/reports' element={<AllReports />} /> 	{/* All Reports Page */}
 						<Route path='/report/:id' element={<Report />} />	{/* Single Report Page */}
+						<Route path='/report/1' element={<Report/>} /> 		{/* For testing, DELETE LATER!! */}
 						<Route path='/add-report' element={<AddReport />} />{/* Add Report Page */}
 
 						{/* Events */}
 						<Route path='/events' element={<AllEvents />} />	{/* All Events Page */}
 						<Route path='/event/:id' element={<Event />} />		{/* Single Event Page */}
+						<Route path='/event/1' element={<Event />} /> 		{/* For testing, DELETE LATER!! */} 
 						<Route path='/add-event' element={<AddEvent />} />	{/* Add Event Page */}
 
 						<Route path='/help' element={<Help />} />			{/* Help Page */}

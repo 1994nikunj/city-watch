@@ -3,7 +3,7 @@ const reports = [
         id: 1,
         title: 'Graffiti',
         description: 'Graffiti is writing or drawings made on a wall or other surface, usually without permission and within public view.',
-        image: 'https://th.bing.com/th/id/OIP.zqPlkWZ3EJH6t19TA_C3nAHaEL?pid=ImgDet&rs=1'
+        image: 'https://e0.pxfuel.com/wallpapers/1005/493/desktop-wallpaper-returnal.jpg'
     },
     {
         id: 2,
