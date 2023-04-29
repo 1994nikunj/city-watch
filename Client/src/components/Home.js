@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import backgroundImage from '../assets/base.jpg';
+import { Link } from 'react-router-dom';
 import {
 	Box,
 	CardHeader,
@@ -59,52 +57,43 @@ const Home = () => {
 	};
 
 	return (
-		<div style={{
-			position: 'relative'
-		}}>
-			<Header />
+		<>
+			{/* Header Box */}
 			<Box
-				style={{
-					backgroundImage: `url(${backgroundImage})`,
-					backgroundRepeat: 'no-repeat',
-					backgroundSize: 'cover',
+				sx={{
+					paddingTop: '7rem',
+					color: '#fff',
+					fontSize: '2rem',
+					m: '1rem 2rem'
+				}}>
+				Report, view, or discuss local problems or events in your area.
+				<br />
+				<span style={{ fontSize: '1rem' }}>
+					(problems like, graffiti, potholes, trash, etc. and events like, festivals, concerts, dance shows, etc.)
+				</span>
+			</Box>
+
+			<Box
+				sx={{
 					display: 'flex',
-					height: '98vh',
-					flexDirection: 'column',
-				}}
-			>
-				{/* Header Box */}
-				<Box
-					sx={{
-						paddingTop: '7rem',
-						color: '#fff',
-						fontSize: '2rem',
-						m: '1rem 2rem'
-					}}>
-					Report, view, or discuss local problems or events in your area.
-					<br />
-					<span style={{ fontSize: '1rem' }}>
-						(problems like, graffiti, potholes, trash, etc. and events like, festivals, concerts, dance shows, etc.)
-					</span>
-				</Box>
+					flexWrap: 'wrap'
+				}}>
 
-				<Box
+				{/* Reports Card */}
+				<Card
 					sx={{
-						display: 'flex',
-						flexWrap: 'wrap'
-					}}>
-
-					{/* Reports Card */}
-					<Card
-						sx={{
-							backgroundColor: '#fff',
-							borderRadius: '10px',
-							boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
-							margin: '1rem',
-							flex: 1,
-						}}
+						backgroundColor: '#fff',
+						borderRadius: '10px',
+						boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
+						margin: '1rem',
+						flex: 1,
+					}}
+				>
+					<CardHeader title="Recent Reports" />
+					<Link
+						to={`/report/${reports[currentReport].id}`}
+						style={{ textDecoration: 'none' }}
 					>
-						<CardHeader title="Recent Events" />
 						<CardContent
 							sx={{
 								background: 'linear-gradient(45deg, #CE8AA5, #0E1B3D)',
@@ -127,39 +116,44 @@ const Home = () => {
 									<CardMedia
 										component="img"
 										sx={imageStyle}
-										image={reports[currentReport].image}
+										image={reports[currentReport].images[0]}
 										alt={reports[currentReport].title}
 									/>
 								</Grid>
 							</Grid>
 						</CardContent>
-						<Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
-							<ActionButton
-								label="Previous"
-								icon={<PrevIcon />}
-								disabled={currentReport === 0}
-								onClick={() => setCurrentReport(currentReport - 1)}
-							/>
-							<ActionButton
-								label="Next"
-								icon={<NextIcon />}
-								disabled={currentReport === reports.length - 1}
-								onClick={() => setCurrentReport(currentReport + 1)}
-							/>
-						</Box>
-					</Card>
+					</Link>
+					<Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
+						<ActionButton
+							label="Previous"
+							icon={<PrevIcon />}
+							disabled={currentReport === 0}
+							onClick={() => setCurrentReport(currentReport - 1)}
+						/>
+						<ActionButton
+							label="Next"
+							icon={<NextIcon />}
+							disabled={currentReport === reports.length - 1}
+							onClick={() => setCurrentReport(currentReport + 1)}
+						/>
+					</Box>
+				</Card>
 
-					{/* Events Card */}
-					<Card
-						sx={{
-							backgroundColor: '#fff',
-							borderRadius: '10px',
-							boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
-							margin: '1rem',
-							flex: 1
-						}}
+				{/* Events Card */}
+				<Card
+					sx={{
+						backgroundColor: '#fff',
+						borderRadius: '10px',
+						boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
+						margin: '1rem',
+						flex: 1
+					}}
+				>
+					<CardHeader title="Recent Events" />
+					<Link
+						to={`/event/${events[currentEvent].id}`}
+						style={{ textDecoration: 'none' }}
 					>
-						<CardHeader title="Recent Events" />
 						<CardContent
 							sx={{
 								background: 'linear-gradient(45deg, #0E2044, #7D8B8B)',
@@ -182,32 +176,30 @@ const Home = () => {
 									<CardMedia
 										component="img"
 										sx={imageStyle}
-										image={events[currentEvent].image}
+										image={events[currentEvent].images[0]}
 										alt={events[currentEvent].title}
 									/>
 								</Grid>
 							</Grid>
 						</CardContent>
-						<Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
-							<ActionButton
-								label="Previous"
-								icon={<PrevIcon />}
-								disabled={currentEvent === 0}
-								onClick={() => setCurrentEvent(currentEvent - 1)}
-							/>
-							<ActionButton
-								label="Next"
-								icon={<NextIcon />}
-								disabled={currentEvent === events.length - 1}
-								onClick={() => setCurrentEvent(currentEvent + 1)}
-							/>
-						</Box>
-					</Card>
-
-				</Box>
+					</Link>
+					<Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
+						<ActionButton
+							label="Previous"
+							icon={<PrevIcon />}
+							disabled={currentEvent === 0}
+							onClick={() => setCurrentEvent(currentEvent - 1)}
+						/>
+						<ActionButton
+							label="Next"
+							icon={<NextIcon />}
+							disabled={currentEvent === events.length - 1}
+							onClick={() => setCurrentEvent(currentEvent + 1)}
+						/>
+					</Box>
+				</Card>
 			</Box>
-			<Footer />
-		</div>
+		</>
 	);
 }
 

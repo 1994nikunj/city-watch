@@ -1,20 +1,14 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import backgroundImage from '../assets/base.jpg';
 import {
-	Box, Typography
+	Box,
+	Typography
 } from '@mui/material';
 
 const Help = () => {
 	return (
-		<div style={{ position: 'relative' }}>
-			<Header />
+		<>
 			<Box
 				sx={{
-					backgroundImage: `url(${backgroundImage})`,
-					backgroundRepeat: 'no-repeat',
-					backgroundSize: 'cover',
 					height: 'calc(98vh - 64px - 56px)',
 					overflowY: 'auto',
 					padding: '64px 16px 56px'
@@ -126,8 +120,7 @@ const Help = () => {
 					</Typography>
 				</Box>
 			</Box>
-			<Footer />
-		</div >
+		</>
 	);
 }
 

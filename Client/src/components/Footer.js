@@ -15,7 +15,6 @@ import linkedinIcon from '../assets/Icons/linkedin.png';
 import youtubeIcon from '../assets/Icons/youtube.png';
 import snapchatIcon from '../assets/Icons/snapchat.png';
 
-
 const socialIconStyle = {
 	height: '3rem',
 	width: '3rem',
@@ -106,15 +105,15 @@ const Footer = () => {
 					}}>
 					<Link to="/reports">All Reports</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">All Events</Link>
+					<Link to="/events">All Events</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">Help</Link>
+					<Link to="/help">Help</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">SignUp</Link>
+					<Link to="/signup">SignUp</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">Login</Link>
+					<Link to="/">Login</Link>
 					&nbsp; | &nbsp;
-					<Link to="/reports">Logout</Link>
+					<Link to="/">Logout</Link>
 				</Box>
 
 				{/* Social Icons */}
