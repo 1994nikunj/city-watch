@@ -104,7 +104,9 @@ const Header = ({ username }) => {
 			>
 				<NavigationButton to="/home" icon={<HomeIcon />} label='Home' />
 				<NavigationButton to="/reports" icon={<ReportIcon />} label='Report List' />
+				<NavigationButton to="/add-report" icon={<ReportIcon />} label='Add Report' />
 				<NavigationButton to="/events" icon={<EventIcon />} label='Event List' />
+				<NavigationButton to="/add-event" icon={<EventIcon />} label='Add Event' />
 				<NavigationButton to="/help" icon={<HelpIcon />} label='Help' />
 				<NavigationButton to="/profile" icon={<ProfileIcon />} label='Profile' />
 				<NavigationButton to="/" icon={<LogoutIcon />} label='Logout' />

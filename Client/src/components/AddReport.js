@@ -1,31 +1,17 @@
 import React, { useState } from 'react';
 import {
 	Box,
-	Button
+	Button,
+	Typography,
+	CardMedia,
+	Card,
+	CardContent,
+	Grid,
+	TextField,
+	CardActions
 } from '@mui/material';
-import { Form } from 'react-bootstrap';
-
-const styles = {
-	container: {
-		backgroundColor: 'lightblue',
-		borderRadius: '10px',
-		boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
-		marginLeft: '3rem',
-		marginRight: '3rem',
-		marginTop: '1rem',
-		marginBottom: '1rem',
-		flex: 1,
-		overflow: 'auto',
-		justifyContent: 'center'
-	},
-
-	field: {
-		margin: '3rem',
-	}
-}
 
 const AddReport = () => {
-	const classes = styles;
 	const [name, setName] = useState(undefined);
 	const [title, setTitle] = useState(undefined);
 	const [description, setDescription] = useState(undefined);
@@ -47,7 +33,11 @@ const AddReport = () => {
 		setLocation(e.target.value);
 	}
 
-	async function handleForm(e) {
+	const handleDateChange = (e) => {
+		setLocation(e.target.value);
+	}
+
+	async function handleSubmit(e) {
 		e.preventDefault();
 		let body = {};
 		body['name'] = name;
@@ -68,51 +58,126 @@ const AddReport = () => {
 					fontSize: '2rem',
 					m: '1rem 2rem'
 				}}>
-				Add A Report
+				Add a new report
 			</Box>
-			<div style={classes.container}>
-				<Form onSubmit={handleForm}>
-					<Form.Group sx={classes.field}>
-						<Form.Label className="form-label"> Name</Form.Label>
-						<Form.Control className="form-control" required
-							name="name"
-							type="textarea"
-							placeholder="Mark Smith"
-							onChange={handleNameChange}
-						/>
-					</Form.Group>
-					<Form.Group sx={classes.field}>
-						<Form.Label> Title</Form.Label>
-						<Form.Control required
-							name="title"
-							type="textarea"
-							placeholder="Road Closure"
-							onChange={handleTitleChange}
-						/>
-					</Form.Group>
-					<Form.Group sx={classes.field}>
-						<Form.Label> Description</Form.Label>
-						<Form.Control required
-							name="description"
-							type="textarea"
-							placeholder="Someone crashed a car"
-							onChange={handleDescriptionChange}
-						/>
-					</Form.Group>
-					<Form.Group sx={classes.field}>
-						<Form.Label> Location</Form.Label>
-						<Form.Control required
-							name="location"
-							type="textarea"
-							placeholder="Hoboken, NJ"
-							onChange={handleLocationChange}
-						/>
-					</Form.Group>
-					<Button type="submit">
-						Submit
-					</Button>
-				</Form>
-			</div>
+			<Card
+				sx={{
+					backgroundColor: '#fff',
+					borderRadius: '10px',
+					boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
+					margin: '1rem',
+					flex: 1,
+					height: '60vh',
+				}}
+			>
+				<form onSubmit={handleSubmit}>
+					<Grid container spacing={2}>
+						<Grid item xs={12} sm={6}>
+							<CardContent
+								sx={{
+									justifyContent: 'center',
+									position: 'relative',
+								}}
+							>
+								<TextField
+									id="outlined-basic"
+									label="Name"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleNameChange}
+								/>
+								<TextField
+									id="outlined-basic"
+									label="Title"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleTitleChange}
+								/>
+								<TextField
+									id="outlined-basic"
+									label="Location"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleLocationChange}
+								/>
+								<TextField
+									id="outlined-basic"
+									label="Date"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleDateChange}
+								/>
+								<TextField
+									id="outlined-basic"
+									label="Description"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleDescriptionChange}
+								/>
+							</CardContent>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<CardContent
+								sx={{
+									justifyContent: 'center',
+									position: 'relative',
+								}}
+							>
+								<Typography
+									variant="body2"
+									color="text.secondary"
+									sx={{
+										fontSize: '1.2rem',
+										fontWeight: 'bold',
+										marginBottom: '10px',
+									}}
+								>
+									Upload Images
+								</Typography>
+								<CardMedia
+									component="img"
+									height="140"
+									image="https://source.unsplash.com/random"
+									alt="random"
+									sx={{
+										borderRadius: '10px',
+									}}
+								/>
+							</CardContent>
+						</Grid>
+					</Grid>
+
+					<CardActions
+						sx={{
+							justifyContent: 'center',
+							position: 'relative',
+						}}
+					>
+						<Button
+							variant="contained"
+							color="primary"
+							onClick={handleSubmit}
+						>
+							Submit
+						</Button>
+					</CardActions>
+				</form>
+			</Card>
 		</>
 	);
 }

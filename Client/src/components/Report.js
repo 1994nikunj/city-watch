@@ -133,7 +133,7 @@ const Report = () => {
 											width: '100%',
 											objectFit: 'cover',
 											borderRadius: '10px',
-											boxShadow: '0 0px 30px #000',
+											boxShadow: '-2px 2px 10px #000',
 											position: 'relative',
 											left: '50%',
 											transform: 'translateX(-50%)',

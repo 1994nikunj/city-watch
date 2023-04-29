@@ -28,40 +28,37 @@ const Login = () => {
 		>
 			<Paper
 				style={{
-					width: 400,
-					padding: 30,
-					borderRadius: 20
+					width: 600,
+					height: 550,
+					borderRadius: 20,
 				}}
 			>
 				<Grid
 					container
 					spacing={3}
-					direction={'column'}
-					justify={'center'}
-					alignItems={'center'}
-					style={{ padding: 30 }}
-
+					direction='column'
+					justify='center'
+					alignItems='center'
+					style={{ padding: 20 }}
 				>
 					<Grid item xs={12}>
 						<h2>CITY-WATCH</h2>
 						<h4>A Reporting tool for Local community</h4>
-						<br />
-						<br />
 						<h5>Welcome to CITY-WATCH</h5>
 					</Grid>
 					<Grid
 						item xs={12}
 						style={{ width: '100%', textAlign: 'left' }}
 					>
-						<label>Username or Email</label>
 						<TextField
+							label="Username or Email"
 							style={{ width: '100%' }}
 							placeholder="Enter here..."
 						></TextField>
 						<br />
 						<br />
-						<label>Password</label>
 						<TextField
+							label="Password"
 							style={{ width: '100%' }}
 							placeholder="Enter here..."
 							type={'password'}>

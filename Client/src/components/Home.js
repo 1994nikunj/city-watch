@@ -109,8 +109,19 @@ const Home = () => {
 										{reports[currentReport].title}
 									</Typography>
 									<Typography variant="body1">
-										{reports[currentReport].description}
+										{`${reports[currentReport].description.slice(0, 300)}...`}
 									</Typography>
+									<br />
+									<span> Date: </span>
+									<span> {reports[currentReport].date} </span>
+									<br />
+									<br />
+									<span> Time: </span>
+									<span> {reports[currentReport].time} </span>
+									<br />
+									<br />
+									<span> Location: </span>
+									<span> {reports[currentReport].location} </span>
 								</Grid>
 								<Grid item xs={12} sm={6}>
 									<CardMedia
@@ -169,8 +180,19 @@ const Home = () => {
 										{events[currentEvent].title}
 									</Typography>
 									<Typography variant="body1">
-										{events[currentEvent].description}
+										{`${events[currentEvent].description.slice(0, 250)}...`}
 									</Typography>
+									<br />
+									<span> Date: </span>
+									<span> {events[currentEvent].date} </span>
+									<br />
+									<br />
+									<span> Time: </span>
+									<span> {events[currentEvent].time} </span>
+									<br />
+									<br />
+									<span> Location: </span>
+									<span> {events[currentEvent].location} </span>
 								</Grid>
 								<Grid item xs={12} sm={6}>
 									<CardMedia
