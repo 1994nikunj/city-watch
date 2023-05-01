@@ -26,6 +26,8 @@ const Event = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [activeStep, setActiveStep] = useState(0);
+	const [comment, setComment] = useState(undefined);
+	const [name, setName] = useState(undefined);
 
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -34,6 +36,42 @@ const Event = () => {
 	const handleBack = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
+
+	const handleNameChange = (e) => {
+		setName(e.target.value);
+	};
+
+	const handleCommentChange = (e) => {
+		setComment(e.target.value);
+	}
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+		let body = {};
+		body['user'] = name;
+		body['text'] = comment; 
+
+		console.log(body);
+		try {
+			const response = await fetch(
+				`http://localhost:5000/events/${id}/comments`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*'
+					},
+					body: JSON.stringify(body)
+				}
+			)
+
+			alert('Comment Submitted');
+			fetchEvent();
+		} catch (e) {
+			console.log(e);
+		}
+
+		
+	}
 
 	async function fetchEvent() {
 		try {
@@ -199,19 +237,19 @@ const Event = () => {
 
 										{eventData.comments.length !== 0 ? (
 											<Box sx={{ marginTop: '10px' }}>
-												{eventData.comments.slice(0, 2).map((comment, index) => (
+												{eventData.comments.map((comment, index) => (
 													<Box key={index}>
 														<Grid container alignItems="center">
 															<Grid item xs={2.5}>
 																<CardHeader
 																	avatar={<Avatar>{comment.avatar}</Avatar>}
-																	title={comment.author}
+																	title={comment.user}
 																	subheader={comment.date}
 																/>
 															</Grid>
 															<Grid item xs={9.5}>
 																<Typography variant="body2" color="text.secondary">
-																	{comment.comment}
+																	{comment.text}
 																</Typography>
 															</Grid>
 														</Grid>
@@ -230,9 +268,9 @@ const Event = () => {
 											Add Comment
 										</Typography>
 										<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-											<TextField label="Name" variant="outlined" fullWidth sx={{ marginBottom: '5px' }} />
-											<TextField label="Comment" variant="outlined" rows={1} fullWidth sx={{ marginBottom: '5px' }} />
-											<Button variant="contained" color="primary" sx={{ fontWeight: 'bold', width: '150px' }}>
+											<TextField onChange={handleNameChange} label="Name" variant="outlined" fullWidth sx={{ marginBottom: '5px' }} />
+											<TextField onChange={handleCommentChange} label="Comment" variant="outlined" rows={1} fullWidth sx={{ marginBottom: '5px' }} />
+											<Button onClick={handleSubmit} variant="contained" color="primary" sx={{ fontWeight: 'bold', width: '150px' }}>
 												Submit
 											</Button>
 										</Box>

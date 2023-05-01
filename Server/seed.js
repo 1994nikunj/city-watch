@@ -19,17 +19,17 @@ const report1 = {
     comments: [
         {
             id: 1,
-            comment: 'This is a comment',
+            text: 'This is a comment',
             date: '2021-09-01',
             time: '12:00 PM',
-            author: 'John Doe'
+            user: 'John Doe'
         },
         {
             id: 2,
-            comment: 'This is another comment',
+            text: 'This is another comment',
             date: '2021-09-01',
             time: '12:00 PM',
-            author: 'Jane Doe'
+            user: 'Jane Doe'
         }
     ]
 };
@@ -66,13 +66,13 @@ const report3 = {
     comments: [
         {
             id: 1,
-            comment: 'This is a comment',
+            text: 'This is a comment',
             date: '2021-09-01',
             time: '12:00 PM'
         },
         {
             id: 2,
-            comment: 'This is another comment',
+            text: 'This is another comment',
             date: '2021-09-01',
             time: '12:00 PM'
         }
