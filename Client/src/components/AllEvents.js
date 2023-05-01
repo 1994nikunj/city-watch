@@ -31,7 +31,11 @@ const AllEvents = () => {
 	async function fetchEvents() {
 		try {
 			const response = await fetch(
-				`http://localhost:5000/events`, { method: 'GET'}
+				`http://localhost:5000/events`, 
+				{ 
+					method: 'GET', 
+					headers: {'Access-Control-Allow-Origin': '*'}
+				}
 			);
 			if (response.status === 200) {
 				const data = await response.json();

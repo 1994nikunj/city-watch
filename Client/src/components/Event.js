@@ -36,9 +36,17 @@ const Event = () => {
 	};
 
 	useEffect(() => {
-		const event = data.events.find((event) => event.id === id);
-		if (event) {
-			setEventData(event);
+		const response = fetch (
+			`http://localhost:5000/events/${id}`,
+			{
+				method: 'GET',
+				headers: {'Access-Control-Allow-Origin': '*'}
+			}
+		);
+		if (response.status === 200) {
+			const data = response.json();
+			setEventData(data);
+			console.log(data);
 			setLoading(false);
 		} else {
 			setError(`Event with id ${id} not found`);

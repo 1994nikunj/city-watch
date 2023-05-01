@@ -32,7 +32,11 @@ const AllReports = () => {
 	async function fetchReviews() {
 		try {
 			const response = await fetch(
-				`http://localhost:5000/reports`, { method: 'GET'}
+				`http://localhost:5000/reports`, 
+				{ 
+					method: 'GET',
+					headers: {'Access-Control-Allow-Origin': '*'}
+				}
 			);
 			if (response.status === 200) {
 				const data = await response.json();

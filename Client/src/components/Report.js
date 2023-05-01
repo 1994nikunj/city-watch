@@ -21,7 +21,7 @@ import data from '../seedData/data';
 
 const Report = () => {
 	let { id } = useParams();
-	id = parseInt(id);
+	//id = parseInt(id);
 
 	const [reportData, setReportData] = useState(undefined);
 	const [loading, setLoading] = useState(true);
@@ -37,9 +37,17 @@ const Report = () => {
 	};
 
 	useEffect(() => {
-		const report = data.reports.find((report) => report.id === id);
-		if (report) {
-			setReportData(report);
+		const response = fetch (
+			`http://localhost:5000/reports/${id}`,
+			{
+				method: 'GET',
+				headers: {'Access-Control-Allow-Origin': '*'}
+			}
+		);
+		if (response.status === 200) {
+			const data = response.json();
+			setReportData(data);
+			console.log(data);
 			setLoading(false);
 		} else {
 			setError(`Report with id ${id} not found`);
