@@ -27,17 +27,28 @@ This application is built using [`MERN`](https://www.mongodb.com/mern-stack) sta
 ```shell
 # Get the repo using git command or download using github-url and unzip the contents in a directory:
 > git clone https://github.com/1994nikunj/city-watch
+
+# cd into directory
+> cd city-watch
 ```
 
-### Step II. Installing dependencies
+### Step II. Backend Setup
 ```shell
-# From the project's root directory, execute the below:
+# cd into the server directory, install dependencies, run seed file
+# make sure mongoDB is running!!
+> cd server
 > npm install
+> npm run seed
+> npm start
+
+# Leave this terminal open
 ```
 
-### Step III: Running the application
+### Step III. Frontend Setup
 ```shell
-# From the root directory you can start the application in development mode using:
+# In another terminal, do the following
+> cd client
+> npm install
 > npm start
 ```
 

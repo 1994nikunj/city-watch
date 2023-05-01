@@ -50,12 +50,12 @@ const App = () => {
 
 								{/* Reports */}
 								<Route path='/reports' element={<AllReports />} /> 		{/* All Reports Page */}
-								<Route path='/report/:id' element={<Report />} />		{/* Single Report Page */}
+								<Route path='/reports/:id' element={<Report />} />		{/* Single Report Page */}
 								<Route path='/add-report' element={<AddReport />} />	{/* Add Report Page */}
 
 								{/* Events */}
 								<Route path='/events' element={<AllEvents />} />		{/* All Events Page */}
-								<Route path='/event/:id' element={<Event />} />			{/* Single Event Page */}
+								<Route path='/events/:id' element={<Event />} />			{/* Single Event Page */}
 								<Route path='/add-event' element={<AddEvent />} />		{/* Add Event Page */}
 
 								<Route path='/help' element={<Help />} />				{/* Help Page */}

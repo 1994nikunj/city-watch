@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	Box,
@@ -27,7 +27,31 @@ const spanStyle = {
 
 
 const AllReports = () => {
-	const reports = data.reports;
+	const [reports, setReports] = useState([]);
+
+	async function fetchReviews() {
+		try {
+			const response = await fetch(
+				`http://localhost:5000/reports`, 
+				{ 
+					method: 'GET',
+					headers: {'Access-Control-Allow-Origin': '*'}
+				}
+			);
+			if (response.status === 200) {
+				const data = await response.json();
+				setReports(data);
+				//console.log(data);
+			}
+		} catch (e) {
+			console.log('Failed to get reports');
+			console.log(e);
+		}
+
+	}
+	useEffect(() => {
+		fetchReviews();
+	});
 
 	return (
 		<>
@@ -66,7 +90,7 @@ const AllReports = () => {
 									}}
 								>
 									<Link
-										to={`/report/${report.id}`}
+										to={`/reports/${report._id}`}
 										style={{ textDecoration: 'none' }}
 									>
 										<CardContent sx={{ color: '#fff' }}>

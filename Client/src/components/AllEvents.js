@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	Box,
@@ -27,7 +27,30 @@ const spanStyle = {
 
 
 const AllEvents = () => {
-	const events = data.events;
+	const [events, setEvents] = useState([]);
+	async function fetchEvents() {
+		try {
+			const response = await fetch(
+				`http://localhost:5000/events`, 
+				{ 
+					method: 'GET', 
+					headers: {'Access-Control-Allow-Origin': '*'}
+				}
+			);
+			if (response.status === 200) {
+				const data = await response.json();
+				setEvents(data);
+				console.log(data);
+			}
+		} catch (e) {
+			console.log('Failed to get events');
+			console.log(e);
+		}
+
+	}
+	useEffect(() => {
+		fetchEvents();
+	});
 
 	return (
 		<>
@@ -66,7 +89,7 @@ const AllEvents = () => {
 									}}
 								>
 									<Link
-										to={`/event/${event.id}`}
+										to={`/events/${event._id}`}
 										style={{ textDecoration: 'none' }}
 									>
 										<CardContent sx={{ color: '#fff' }}>

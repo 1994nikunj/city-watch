@@ -20,12 +20,14 @@ import data from '../seedData/data';
 
 const Event = () => {
 	let { id } = useParams();
-	id = parseInt(id);
+	id = id.toString();
 
 	const [eventData, setEventData] = useState(undefined);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [activeStep, setActiveStep] = useState(0);
+	const [comment, setComment] = useState(undefined);
+	const [name, setName] = useState(undefined);
 
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -35,17 +37,67 @@ const Event = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
-	useEffect(() => {
-		const event = data.events.find((event) => event.id === id);
-		if (event) {
-			setEventData(event);
-			setLoading(false);
-		} else {
-			setError(`Event with id ${id} not found`);
-			setLoading(false);
-		}
-	}, [id]);
+	const handleNameChange = (e) => {
+		setName(e.target.value);
+	};
 
+	const handleCommentChange = (e) => {
+		setComment(e.target.value);
+	}
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+		let body = {};
+		body['user'] = name;
+		body['text'] = comment; 
+
+		console.log(body);
+		try {
+			const response = await fetch(
+				`http://localhost:5000/events/${id}/comments`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*'
+					},
+					body: JSON.stringify(body)
+				}
+			)
+
+			alert('Comment Submitted');
+			fetchEvent();
+		} catch (e) {
+			console.log(e);
+		}
+
+		
+	}
+
+	async function fetchEvent() {
+		try {
+			let url = `http://localhost:5000/events/${id}`;
+			const response = await fetch (
+				url,
+				{
+					method: 'GET',
+					headers: {'Access-Control-Allow-Origin': '*'}
+				}
+			);
+			if (response.status === 200) {
+				const data = await response.json();
+				setEventData(data);
+				console.log(data);
+				setLoading(false);
+			} 
+		} catch (e) {
+			console.log('Failed to get event');
+			console.log(e);
+		}
+	}
+
+	useEffect(() => {
+		fetchEvent();
+	});
 	if (loading) {
 		return (
 			<div>
@@ -185,19 +237,19 @@ const Event = () => {
 
 										{eventData.comments.length !== 0 ? (
 											<Box sx={{ marginTop: '10px' }}>
-												{eventData.comments.slice(0, 2).map((comment, index) => (
+												{eventData.comments.map((comment, index) => (
 													<Box key={index}>
 														<Grid container alignItems="center">
 															<Grid item xs={2.5}>
 																<CardHeader
 																	avatar={<Avatar>{comment.avatar}</Avatar>}
-																	title={comment.author}
+																	title={comment.user}
 																	subheader={comment.date}
 																/>
 															</Grid>
 															<Grid item xs={9.5}>
 																<Typography variant="body2" color="text.secondary">
-																	{comment.comment}
+																	{comment.text}
 																</Typography>
 															</Grid>
 														</Grid>
@@ -216,9 +268,9 @@ const Event = () => {
 											Add Comment
 										</Typography>
 										<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-											<TextField label="Name" variant="outlined" fullWidth sx={{ marginBottom: '5px' }} />
-											<TextField label="Comment" variant="outlined" rows={1} fullWidth sx={{ marginBottom: '5px' }} />
-											<Button variant="contained" color="primary" sx={{ fontWeight: 'bold', width: '150px' }}>
+											<TextField onChange={handleNameChange} label="Name" variant="outlined" fullWidth sx={{ marginBottom: '5px' }} />
+											<TextField onChange={handleCommentChange} label="Comment" variant="outlined" rows={1} fullWidth sx={{ marginBottom: '5px' }} />
+											<Button onClick={handleSubmit} variant="contained" color="primary" sx={{ fontWeight: 'bold', width: '150px' }}>
 												Submit
 											</Button>
 										</Box>
