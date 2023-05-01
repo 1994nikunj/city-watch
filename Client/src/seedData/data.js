@@ -72,6 +72,8 @@ const reports = [
 			}
 		]
 	}
+	
+
 ]
 
 const events = [
@@ -159,6 +161,7 @@ const events = [
 			}
 		]
 	}
+	
 ]
 
 module.exports = { reports, events };
