@@ -1,109 +1,185 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
-    Grid,
-    TextField,
-    Paper,
-    Button
+	Grid,
+	TextField,
+	CardMedia,
+	Button,
+	Typography,
+	Box
 } from '@mui/material';
+import logo from '../assets/logo_large.png';
+import backgroundImage from '../assets/base.jpg';
+
 
 const SignupPage = () => {
+	return (
+		<>
+			<div style={{ position: 'relative' }}>
+				<Box
+					sx={{
+						backgroundImage: `url(${backgroundImage})`,
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: 'cover',
+						display: 'flex',
+						height: '98vh',
+					}}
+				>
+					<Grid
+						container
+						sx={{
+							display: 'flex',
+							flexDirection: 'row',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						{/* Column 1 */}
+						<Grid item xs={4}
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								alignItems: 'center',
+								backgroundColor: 'white',
+								borderRadius: '10px',
+								padding: '3rem',
+								marginRight: '0.5rem',
+								height: '600px'
+							}}
+						>
+							<CardMedia
+								component="img"
+								image={logo}
+								alt="green iguana"
+								sx={{
+									width: '80%',
+								}}
+							/>
+						</Grid>
 
-    return (
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh',
-                width: '100vw',
-                backgroundColor: '#f5f5f5'
-            }}
+						{/* Column 2 */}
+						<Grid item xs={4}
+							sx={{
+								display: 'flex',
+								backgroundColor: 'white',
+								flexDirection: 'column',
+								alignItems: 'center',
+								justifyContent: 'center',
+								borderRadius: '10px',
+								padding: '3rem',
+								marginLeft: '0.5rem',
+								height: '600px'
+							}}
+						>
+							<Grid item xs={12}>
+								<Typography
+									variant="h4"
+									style={{
+										fontWeight: 'bold',
+										fontSize: '1.5rem',
+										marginBottom: '0.5rem',
+										color: 'rgb(80, 80, 80, 0.9)',
+										textAlign: 'center'
+									}}
+								>CITY-WATCH: Sign Up</Typography>
+							</Grid>
+							<Grid
+								item xs={12}
+								sx={{
+									width: '100%',
+									textAlign: 'center',
+									marginBottom: '1rem'
+								}}
+							>
+								<TextField
+									label="Name"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									placeholder="Enter here..."
+									type={'text'}
+								/>
 
-        >
-            <Paper>
-                <Grid
-                    container
-                    spacing={3}
-                    direction={'column'}
-                    justify={'center'}
-                    alignItems={'center'}
-                    style={{ padding: 30 }}
-                >
-                    <Grid item xs={12}>
-                        <h2>CITY-WATCH: Sign Up</h2>
-                    </Grid>
-                    <Grid
-                        item xs={12}
-                        style={{ width: '100%', textAlign: 'left' }}
-                    >
-                        <label>Email</label>
-                        <TextField
-                            style={{ width: '100%' }}
-                            placeholder="Enter here..."
-                        ></TextField>
+								<TextField
+									label="Email"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									placeholder="Enter here..."
+									type={'text'}
+								/>
 
-                        <label>First name</label>
-                        <TextField
-                            style={{ width: '100%' }}
-                            placeholder="Enter here...">
-                        </TextField>
+								<TextField
+									label="Address"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem',
+									}}
+									placeholder="Enter here..."
+									type={'text'}
+								/>
 
-                        <label>Last name</label>
-                        <TextField
-                            style={{ width: '100%' }}
-                            placeholder="Enter here...">
-                        </TextField>
+								<TextField
+									label="Password"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									placeholder="Enter here..."
+									type={'password'}
+								/>
 
-                        <label>Username</label>
-                        <TextField
-                            style={{ width: '100%' }}
-                            placeholder="Enter here...">
-                        </TextField>
+								{/* Confirm password */}
+								<TextField
+									label="Confirm Password"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									placeholder="Enter here..."
+									type={'password'}
+								/>
 
-                        <label>Password</label>
-                        <TextField
-                            style={{ width: '100%' }}
-                            placeholder="Enter here...">
-                        </TextField>
-
-                        <label>Confirm Password</label>
-                        <TextField
-                            style={{ width: '100%' }}
-                            placeholder="Enter here...">
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            style={{
-                                width: '100%',
-                                marginBottom: 10,
-                                borderRadius: 20,
-                                color: 'white',
-                                fontSize: 15,
-                                textTransform: 'none'
-                            }}
-                        > Register</Button>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            size="large"
-                            style={{
-                                width: '100%',
-                                marginBottom: 10,
-                                borderRadius: 20,
-                                color: 'white',
-                                fontSize: 15,
-                                textTransform: 'none'
-                            }}
-                        > Back to Login?</Button>
-                    </Grid>
-                </Grid>
-            </Paper>
-        </div>
-    );
+							</Grid>
+							<Grid item xs={12}
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+									alignItems: 'center'
+								}}
+							>
+								<Link to="/" style={{ textDecoration: 'none' }}>
+									<Button
+										sx={{
+											width: '200px',
+											backgroundColor: '#696969',
+											color: 'white',
+											borderRadius: '25px',
+											height: '50px',
+											marginBottom: '0.5rem'
+										}}
+										onClick={() => alert('New user registered successfully!')}
+									> Register</Button>
+								</Link>
+								<Link to="/" style={{ textDecoration: 'none' }}>
+									<Typography
+										style={{
+											color: '#548235',
+											fontSize: 15
+										}}
+									> Back to Login? </Typography>
+								</Link>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Box>
+			</div>
+		</>
+	);
 };
 
 export default SignupPage;

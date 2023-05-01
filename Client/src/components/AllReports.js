@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	Box,
@@ -8,7 +8,9 @@ import {
 	CardContent,
 	Grid,
 } from '@mui/material';
-import data from '../seedData/data';
+import Header from './Header';
+import Footer from './Footer';
+import backgroundImage from '../assets/base.jpg';
 
 const imageStyle = {
 	width: '26rem',
@@ -32,10 +34,10 @@ const AllReports = () => {
 	async function fetchReviews() {
 		try {
 			const response = await fetch(
-				`http://localhost:5000/reports`, 
-				{ 
+				`http://localhost:5000/reports`,
+				{
 					method: 'GET',
-					headers: {'Access-Control-Allow-Origin': '*'}
+					headers: { 'Access-Control-Allow-Origin': '*' }
 				}
 			);
 			if (response.status === 200) {
@@ -55,71 +57,86 @@ const AllReports = () => {
 
 	return (
 		<>
-			<Box
-				sx={{
-					paddingTop: '7rem',
-					color: '#fff',
-					fontSize: '2rem',
-					m: '1rem 2rem',
-					overflowY: 'auto',
-					height: '68vh',
-					'&::-webkit-scrollbar': {
-						width: '0.5rem'
-					},
-					'&::-webkit-scrollbar-track': {
-						background: '#fff',
-						marginTop: '5.5rem',
-						marginBottom: '0.5rem',
-					},
-					'&::-webkit-scrollbar-thumb': {
-						background: '#CE8CA7',
-					},
-				}}
-			>
-				All Reports
-				<Grid container spacing={2}>
-					{reports.map((report, index) => {
-						return (
-							<Grid item xs={12} sm={6} key={report.id}>
-								<Card
-									sx={{
-										background: 'linear-gradient(45deg, #CE8AA5, #0E1B3D)',
-										borderRadius: '10px',
-										boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
-										margin: '1rem'
-									}}
-								>
-									<Link
-										to={`/reports/${report._id}`}
-										style={{ textDecoration: 'none' }}
-									>
-										<CardContent sx={{ color: '#fff' }}>
-											<Grid container spacing={1}>
-												<Grid item xs={6}>
-													<Typography variant="h4" component="div" gutterBottom>{report.title}</Typography>
-													<Typography variant="body2">{`${report.description.slice(0, 250)}...`}</Typography>
-													<Typography variant="subtitle2" sx={{ marginTop: '1rem' }}
-													><span style={spanStyle}>Date:</span> {report.date}</Typography>
-													<Typography variant="subtitle2"><span style={spanStyle}>Time:</span> {report.time}</Typography>
-													<Typography variant="subtitle2"><span style={spanStyle}>Location:</span> {report.location}</Typography>
-												</Grid>
-												<Grid item xs={12} sm={4}>
-													<CardMedia
-														component="img"
-														sx={imageStyle}
-														image={report.images[0]}
-														alt={report.title}
-													/>
-												</Grid>
-											</Grid>
-										</CardContent>
-									</Link>
-								</Card>
-							</Grid>
-						);
-					})}
-				</Grid>
-			</Box>
+			<div style={{ position: 'relative' }}>
+				<Header />
+				<Box
+					style={{
+						backgroundImage: `url(${backgroundImage})`,
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: 'cover',
+						display: 'flex',
+						height: '98vh',
+						flexDirection: 'column',
+					}}
+				>
+					<Box
+						sx={{
+							paddingTop: '7rem',
+							color: '#fff',
+							fontSize: '2rem',
+							m: '1rem 2rem',
+							overflowY: 'auto',
+							height: '68vh',
+							'&::-webkit-scrollbar': {
+								width: '0.5rem'
+							},
+							'&::-webkit-scrollbar-track': {
+								background: '#fff',
+								marginTop: '5.5rem',
+								marginBottom: '0.5rem',
+							},
+							'&::-webkit-scrollbar-thumb': {
+								background: '#CE8CA7',
+							},
+						}}
+					>
+						All Reports
+						<Grid container spacing={2}>
+							{reports.map((report, index) => {
+								return (
+									<Grid item xs={12} sm={6} key={report.id}>
+										<Card
+											sx={{
+												background: 'linear-gradient(45deg, #CE8AA5, #0E1B3D)',
+												borderRadius: '10px',
+												boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
+												margin: '1rem'
+											}}
+										>
+											<Link
+												to={`/reports/${report._id}`}
+												style={{ textDecoration: 'none' }}
+											>
+												<CardContent sx={{ color: '#fff' }}>
+													<Grid container spacing={1}>
+														<Grid item xs={6}>
+															<Typography variant="h4" component="div" gutterBottom>{report.title}</Typography>
+															<Typography variant="body2">{`${report.description.slice(0, 250)}...`}</Typography>
+															<Typography variant="subtitle2" sx={{ marginTop: '1rem' }}
+															><span style={spanStyle}>Date:</span> {report.date}</Typography>
+															<Typography variant="subtitle2"><span style={spanStyle}>Time:</span> {report.time}</Typography>
+															<Typography variant="subtitle2"><span style={spanStyle}>Location:</span> {report.location}</Typography>
+														</Grid>
+														<Grid item xs={12} sm={4}>
+															<CardMedia
+																component="img"
+																sx={imageStyle}
+																image={report.images[0]}
+																alt={report.title}
+															/>
+														</Grid>
+													</Grid>
+												</CardContent>
+											</Link>
+										</Card>
+									</Grid>
+								);
+							})}
+						</Grid>
+					</Box>
+				</Box>
+				<Footer />
+			</div>
 		</>
 	);
 }

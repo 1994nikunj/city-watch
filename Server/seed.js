@@ -6,7 +6,7 @@ const reportData = data.reports;
 const report1 = {
     id: 1,
     title: 'Graffiti',
-    description: 'Graffiti is writing or drawings made on a wall or other surface, usually without permission and within public view.',
+    description: 'There was a new graffiti.',
     images: [
         'https://th.bing.com/th/id/OIP.zqPlkWZ3EJH6t19TA_C3nAHaEL?pid=ImgDet&rs=1',
         'https://cdn.britannica.com/93/171293-050-D99BEDB2/Graffiti-Berlin-Wall.jpg',

@@ -12,6 +12,9 @@ import ReportIcon from '@mui/icons-material/Report';
 import HelpIcon from '@mui/icons-material/Help';
 import EventIcon from '@mui/icons-material/Event';
 import ProfileIcon from '@mui/icons-material/AccountCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FlagCircleIcon from '@mui/icons-material/FlagCircle';
+
 import logo from '../assets/logo_small.png';
 
 
@@ -52,7 +55,8 @@ const Header = ({ username }) => {
 		<Grid
 			container
 			alignItems="center"
-			width="100%"
+			justifyContent="space-between"
+			width="100"
 			style={{
 				backgroundColor: '#fff',
 				height: '6rem',
@@ -63,12 +67,7 @@ const Header = ({ username }) => {
 				boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)'
 			}}
 		>
-			<Grid
-				item
-				style={{
-					marginLeft: '1rem',
-				}}
-			>
+			<Grid item style={{ marginLeft: '1rem' }} xs={1}>
 				<CardMedia
 					component="img"
 					image={logo}
@@ -84,29 +83,26 @@ const Header = ({ username }) => {
 				/>
 			</Grid>
 
-			<Grid
-				item
-				style={{
-					marginLeft: '1rem',
-				}}
-			>
-				<Typography variant="h5">
-					Welcome, {uname}!
-				</Typography>
+			<Grid item style={{ marginLeft: '1rem' }} xs={2}>
+				<Typography variant="h5"> Welcome, {uname}! </Typography>
 			</Grid>
 
 			<Grid
 				item
+				xs={8}
 				style={{
 					marginLeft: 'auto',
-					marginRight: '1rem',
+					marginRight: '0.5rem',
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center'
 				}}
 			>
 				<NavigationButton to="/home" icon={<HomeIcon />} label='Home' />
 				<NavigationButton to="/reports" icon={<ReportIcon />} label='Report List' />
-				<NavigationButton to="/add-report" icon={<ReportIcon />} label='Add Report' />
+				<NavigationButton to="/add-report" icon={<FlagCircleIcon />} label='Add Report' />
 				<NavigationButton to="/events" icon={<EventIcon />} label='Event List' />
-				<NavigationButton to="/add-event" icon={<EventIcon />} label='Add Event' />
+				<NavigationButton to="/add-event" icon={<AddCircleIcon />} label='Add Event' />
 				<NavigationButton to="/help" icon={<HelpIcon />} label='Help' />
 				<NavigationButton to="/profile" icon={<ProfileIcon />} label='Profile' />
 				<NavigationButton to="/" icon={<LogoutIcon />} label='Logout' />

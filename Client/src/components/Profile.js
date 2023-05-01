@@ -1,50 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Box,
 	Avatar,
 	Button,
 	Typography,
-	Divider
+	Grid,
+	InputLabel,
+	Input,
+	Stack,
+	Chip,
+	TextField
 } from '@mui/material';
 
-const interestPillStyle = {
-	width: '130px',
-	height: '30px',
-	borderRadius: '10px',
-	fontSize: '0.9rem',
-	background: 'linear-gradient(90deg, #9D4D7A, #632E4C)',
-	boxShadow: '-2px 2px 10px 3px rgba(0, 0, 0, 0.4)',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-	fontStyle: 'italic',
-	transition: 'all 0.5s ease-in-out',
-	'&:hover': {
-		cursor: 'pointer',
-		border: 'none',
-		color: '#150941',
-		backgroundColor: '#CE8CA7',
-		background: 'linear-gradient(90deg, #317991, #194251)',
-		boxShadow: '0px 0px 15px #2C506A',
-	}
-};
+import Header from './Header';
+import Footer from './Footer';
+import backgroundImage from '../assets/base.jpg';
 
 const avatarStyle = {
 	width: '200px',
 	height: '200px',
 	border: '5px solid rgba(0, 0, 0, 0.7)',
 	boxShadow: '0 0 10px rgba(0, 0, 0, 0.7)'
-};
-
-const interestsBoxStyle = {
-	display: 'flex',
-	flexDirection: 'row',
-	justifyContent: 'space-between',
-	marginBottom: '1rem',
-	padding: '0.5rem',
-	borderRadius: '10px',
-	background: 'linear-gradient(45deg, #fff8, #fff3)',
-	boxShadow: '-3px 3px 10px 3px rgba(0, 0, 0, 0.7)'
 };
 
 const statsKeyStyle = {
@@ -90,15 +66,16 @@ const infoValueStyle = {
 	marginTop: '2rem',
 	marginLeft: '15rem',
 	width: '35rem',
-	height: '2.5rem',
+	height: '3.5rem',
 	marginRight: '1rem',
 	padding: '0.5rem',
 	borderRadius: '10px',
-	background: 'linear-gradient(45deg, #286377, #194251)',
+	background: 'linear-gradient(45deg, #398CA8, #194251)',
 	boxShadow: '-3px 3px 10px 3px rgba(0, 0, 0, 0.7)',
 	display: 'flex',
 	justifyContent: 'left',
 	alignItems: 'center',
+	fontWeight: 'bold'
 };
 
 const headerStyle = {
@@ -131,143 +108,308 @@ const editButtonStyle = {
 	}
 };
 
+const avatarInputStyle = {
+	width: '350px',
+	height: '30px',
+	fontSize: '0.75rem',
+	display: 'flex',
+	color: '#fff',
+	justifyContent: 'center',
+	alignItems: 'center',
+	position: 'absolute',
+	marginTop: '11.5rem',
+	marginLeft: '11rem',
+}
+
+const focusedInfoValueStyle = {
+	background: 'linear-gradient(90deg, #9D4D7A, #632E4C)',
+	boxShadow: '0px 0px 20px 3px rgba(255, 255, 255, 0.5)'
+};
+
 const Profile = () => {
+	const [interests, setInterests] = useState(['Camping', 'Dancing', 'Hiking', 'Movies', 'Reading']);
+	const [name, setName] = useState('John Doe');
+	const [email, setEmail] = useState('johnDoe@gmail.com');
+	const [age, setAge] = useState('24');
+	const [address, setAddress] = useState('1034 Hudson St, Hoboken, NJ 07030');
+	const [profession, setProfession] = useState('Masters Student');
+	const [avatar, setAvatar] = useState('https://media.istockphoto.com/id/1338134336/photo/headshot-portrait-african-30s-man-smile-look-at-camera.jpg?b=1&s=170667a&w=0&k=20&c=j-oMdWCMLx5rIx-_W33o3q3aW9CiAWEvv9XrJQ3fTMU=');
+
+	const [edit, setEdit] = useState(false);
+	const handleEdit = () => {
+		setEdit(!edit);
+		setNewInterest('');
+	};
+
+	const [focusedInput, setFocusedInput] = useState(null);
+
+	const [newInterest, setNewInterest] = useState('');
+	const handleAddInterest = () => {
+		setInterests([...interests, newInterest]);
+		setNewInterest('');
+	};
+	const handleRemoveInterest = (indexToRemove) => {
+		setInterests(interests.filter((_, index) => index !== indexToRemove));
+	};
+
+	const handleAvatarChange = (e) => {
+		setAvatar(e.target.value);
+	};
+
 	return (
 		<>
-			<Box
-				sx={{
-					paddingTop: '7rem',
-					color: '#fff',
-					fontSize: '2rem',
-					m: '1rem 2rem',
-					display: 'flex',
-					flexDirection: 'row',
-					justifyContent: 'space-between',
-				}}>
-				User Profile
-			</Box>
-			<Box
-				sx={{
-					color: '#fff',
-					fontSize: '2rem',
-					m: '1rem 2rem',
-					display: 'flex',
-					flexDirection: 'row',
-					justifyContent: 'space-between'
-				}}>
-				{/* Column 1 */}
+			<div style={{ position: 'relative' }}>
+				<Header />
 				<Box
-					sx={{
+					style={{
+						backgroundImage: `url(${backgroundImage})`,
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: 'cover',
 						display: 'flex',
+						height: '98vh',
 						flexDirection: 'column',
-						justifyContent: 'space-between',
-						flex: '1',
-						marginRight: '5rem'
-					}}>
-					<Box
+					}}
+				>
+					<Grid
+						container
+						spacing={2}
 						sx={{
 							display: 'flex',
 							flexDirection: 'row',
-							justifyContent: 'space-between',
-							flex: '1'
-						}}>
-						<Avatar sx={avatarStyle}></Avatar>
-						<Button sx={editButtonStyle}>Edit Profile</Button>
-					</Box>
+							justifyContent: 'center',
+							alignItems: 'center',
+							paddingTop: '8rem',
+						}}
+					>
 
-					{/* Basic Stats */}
-					<Box
-						sx={{
-							marginTop: '1rem',
-							display: 'flex',
-							flexDirection: 'column'
-						}}>
-						<Typography sx={headerStyle}>Basic Stats</Typography>
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Typography sx={statsKeyStyle}>Number of problems reported</Typography>
-							<Typography sx={statsValueStyle}>5</Typography>
-						</Box>
+						{/* Column 1 */}
+						<Grid item xs={6}
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								alignItems: 'center',
+							}}
+						>
+							<Typography sx={{
+								fontSize: '1.9rem',
+								fontWeight: 'bold',
+								color: '#D7D7D7',
+								marginBottom: '1rem',
+							}}>
+								User Profile
+							</Typography>
 
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Typography sx={statsKeyStyle}>Number of events reported</Typography>
-							<Typography sx={statsValueStyle}>5</Typography>
-						</Box>
-					</Box>
+							<Box
+								sx={{
+									display: 'flex',
+									flexDirection: 'row',
+									flex: '1'
+								}}>
+								<Avatar
+									sx={avatarStyle}
+									src={avatar}
+								/>
+								<Button
+									sx={editButtonStyle}
+									variant="contained"
+									onClick={handleEdit}
+								>
+									{edit ? 'Save Profile' : 'Edit Profile'}
+								</Button>
+								{edit ? (
+									<Input
+										sx={avatarInputStyle}
+										placeholder="Enter new avatar URL"
+										value={avatar}
+										onChange={handleAvatarChange}
+									/>
+								) : (<></>)}
+							</Box>
 
-					{/* Interests */}
-					<Box
-						sx={{
-							marginTop: '2rem',
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'space-between'
-						}}>
-						<Typography marginBottom={1} sx={headerStyle}>Interests</Typography>
-						<Box sx={interestsBoxStyle}>
-							<Typography sx={interestPillStyle}> Camping </Typography>
-							<Typography sx={interestPillStyle}> Chinese Food </Typography>
-							<Typography sx={interestPillStyle}> Music Concerts </Typography>
-							<Typography sx={interestPillStyle}> Books </Typography>
-							<Typography sx={interestPillStyle}> Cycling </Typography>
-							<Typography sx={interestPillStyle}> Jazz </Typography>
-						</Box>
-					</Box>
+							{/* Basic Stats */}
+							<Box
+								sx={{
+									marginTop: '1rem',
+									display: 'flex',
+									flexDirection: 'column'
+								}}>
+								<Typography sx={headerStyle}>Basic Stats</Typography>
+								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+									<Typography sx={statsKeyStyle}>Number of problems reported</Typography>
+									<Typography sx={statsValueStyle}>5</Typography>
+								</Box>
+
+								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+									<Typography sx={statsKeyStyle}>Number of events reported</Typography>
+									<Typography sx={statsValueStyle}>5</Typography>
+								</Box>
+							</Box>
+
+							{/* Interests */}
+							<Box
+								sx={{
+									marginTop: '2rem',
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'space-between'
+								}}>
+								<Typography marginBottom={1} sx={headerStyle}>Interests</Typography>
+								{edit ? (
+									<Stack direction="row" spacing={1}>
+										{interests.map((interest, index) => (
+											<Chip
+												key={index}
+												label={interest}
+												onDelete={() => handleRemoveInterest(index)}
+												sx={{
+													border: 'none',
+													margin: '0',
+													color: '#fff',
+													'.MuiChip-deleteIcon': {
+														color: 'red'
+													}
+												}}
+											/>
+										))}
+										<Chip
+											label={
+												<TextField
+													value={newInterest}
+													onChange={(e) => setNewInterest(e.target.value)}
+													placeholder="Add Interest"
+													sx={{
+														border: 'none',
+														margin: '0',
+														'& .MuiInputBase-root': {
+															color: '#fff',
+															border: 'none',
+															margin: '0',
+															padding: '0',
+														},
+														'& .MuiOutlinedInput-notchedOutline': {
+															border: 'none',
+															margin: '0',
+															padding: '0',
+														},
+													}}
+												/>
+											}
+											onDelete={handleAddInterest}
+											sx={{
+												border: 'none',
+												width: '170px',
+												margin: '0',
+												'.MuiChip-deleteIcon': {
+													color: 'green'
+												}
+											}}
+										/>
+									</Stack>
+								) : (
+									<Stack direction="row" spacing={1}>
+										{interests.map((interest) => (
+											<Chip key={interest} label={interest}
+												sx={{
+													border: 'none',
+													margin: '0',
+													color: '#fff',
+													background: 'linear-gradient(90deg, #fff8, #fff1)'
+												}}
+											/>
+										))}
+									</Stack>
+								)}
+							</Box>
+						</Grid>
+
+						{/* Column 2 */}
+						<Grid item xs={6}
+							sx={{
+								display: 'flex'
+							}}
+						>
+							{/* Basic Information */}
+							<Box
+								sx={{
+									display: 'flex',
+									flexDirection: 'column'
+								}}>
+								<Typography sx={headerStyle}>Basic Information</Typography>
+								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+									<InputLabel sx={infoKeyStyle}>Name</InputLabel>
+									<Input
+										sx={{
+											...infoValueStyle,
+											...(focusedInput === 'name' && focusedInfoValueStyle),
+										}}
+										value={name}
+										onFocus={() => setFocusedInput('name')}
+										onChange={(e) => setName(e.target.value)}
+										disabled={!edit}
+									/>
+								</Box>
+
+								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+									<InputLabel sx={infoKeyStyle}>Email</InputLabel>
+									<Input
+										sx={{
+											...infoValueStyle,
+											...(focusedInput === 'email' && focusedInfoValueStyle),
+										}}
+										value={email}
+										onFocus={() => setFocusedInput('email')}
+										onChange={(e) => setEmail(e.target.value)}
+										disabled={!edit}
+									/>
+								</Box>
+
+								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+									<InputLabel sx={infoKeyStyle}>Age</InputLabel>
+									<Input
+										sx={{
+											...infoValueStyle,
+											...(focusedInput === 'age' && focusedInfoValueStyle),
+										}}
+										value={age} onFocus={() => setFocusedInput('age')}
+										onChange={(e) => setAge(e.target.value)}
+										disabled={!edit}
+									/>
+								</Box>
+
+								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+									<InputLabel sx={infoKeyStyle}>Address</InputLabel>
+									<Input
+										sx={{
+											...infoValueStyle,
+											...(focusedInput === 'address' && focusedInfoValueStyle),
+										}}
+										value={address}
+										onFocus={() => setFocusedInput('address')}
+										onChange={(e) => setAddress(e.target.value)}
+										disabled={!edit}
+									/>
+								</Box>
+
+								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+									<InputLabel sx={infoKeyStyle}>Profession</InputLabel>
+									<Input
+										sx={{
+											...infoValueStyle,
+											...(focusedInput === 'profession' && focusedInfoValueStyle),
+										}}
+										value={profession}
+										onFocus={() => setFocusedInput('profession')}
+										onChange={(e) => setProfession(e.target.value)}
+										disabled={!edit}
+									/>
+								</Box>
+							</Box>
+						</Grid>
+					</Grid>
 				</Box>
-
-				<Divider
-					orientation="vertical"
-					flexItem
-					sx={{
-						boxShadow: '0 0 5px rgba(0, 0, 0, 0.4)',
-						width: '1px',
-						backgroundImage: 'linear-gradient(45deg, #CE8CA7, #2C506A)',
-					}}
-				/>
-
-				{/* Column 2 */}
-				<Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'space-between',
-						flex: '1',
-						marginLeft: '5rem',
-					}}>
-					{/* Basic Information */}
-					<Box
-						sx={{
-							display: 'flex',
-							flexDirection: 'column'
-						}}>
-						<Typography sx={headerStyle}>Basic Information</Typography>
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Typography sx={infoKeyStyle}>Name</Typography>
-							<Typography sx={infoValueStyle}>Elon Musk</Typography>
-						</Box>
-
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Typography sx={infoKeyStyle}>Age</Typography>
-							<Typography sx={infoValueStyle}>47</Typography>
-						</Box>
-
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Typography sx={infoKeyStyle}>Address</Typography>
-							<Typography sx={infoValueStyle}>300 Plank St.</Typography>
-						</Box>
-
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Typography sx={infoKeyStyle}>Email</Typography>
-							<Typography sx={infoValueStyle}>elonmusk@tesla.com</Typography>
-						</Box>
-
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Typography sx={infoKeyStyle}>Profession</Typography>
-							<Typography sx={infoValueStyle}>Entrepreneur</Typography>
-						</Box>
-
-					</Box>
-				</Box>
-			</Box>
+				<Footer />
+			</div>
 		</>
 	);
 }

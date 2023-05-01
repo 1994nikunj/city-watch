@@ -5,9 +5,6 @@ const data = require('../data');
 const usersData = data.users;
 const helper = require('../helpers');
 
-
-
-
 router
 	.route('/')
 	.post(async (request, response) => {
@@ -18,7 +15,7 @@ router
 			const lastName = (userBody.lastName);
 			const email = (userBody.email);
 			const password = (userBody.password);
-			const newUser = await usersData.createUser(firstName,lastName,email,password);
+			const newUser = await usersData.createUser(firstName, lastName, email, password);
 
 			response
 				.status(200)
