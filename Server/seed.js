@@ -96,6 +96,28 @@ const report3 = {
     ]
 };
 
+const report4 = {
+    id: 4,
+    title: 'Hoboken Traffic',
+    description: 'Traffic at Willow and 14st, watch out hoboken residents',
+    images: [
+        'https://pyxis.nymag.com/v1/imgs/c31/3a5/c01b3f0cb3f32f34ac1670ff10991d9e47-hoboken-lede.jpg'
+        ],
+    date: '2021-09-01',
+    location: 'Willow Av, 14 st',
+    time: '12:00 PM',
+    comments: [
+        {
+            id: 1,
+            text: 'We need to do something about the traffic',
+            date: '2021-09-01',
+            time: '12:00 PM',
+            user: 'John Doe'
+        },
+        
+    ]
+};
+
 const event1 = {
     id: 1,
     title: 'Shopping Festival',
@@ -188,6 +210,46 @@ const event3 = {
         }
     ]
 };
+const event4 = {
+    id: 4,
+    title: 'Hoboken Recreational Event',
+    description: 'A good Recreational event in hoboken at 10 st',
+    images: [
+        'https://www.westend61.de/images/0000689102pw/four-women-having-an-outdoor-workout-MADF000557.jpg'
+       ],
+    date: '2021-09-01',
+    location: '10 st Bloomfield , hoboken',
+    time: '12:00 PM',
+    comments: [
+        {
+            id: 1,
+            text: 'This is a comment',
+            date: '2021-09-01',
+            time: '12:00 PM',
+            user: 'John Doe'
+        }
+    ]
+};
+const event5 = {
+    id: 5,
+    title: 'Hoboken Soccer Event',
+    description: 'Soccer tournament at Sinatra park',
+    images: [
+        'https://nydlfc.com/wp-content/uploads/2019/04/nydl-fc-cps-3-1024x683.jpg'
+       ],
+    date: '2021-09-01',
+    location: 'Sinatra Park',
+    time: '12:00 PM',
+    comments: [
+        {
+            id: 1,
+            text: 'This is a comment',
+            date: '2021-09-01',
+            time: '12:00 PM',
+            user: 'John Doe'
+        }
+    ]
+};
 
 const main = async () => {
     let db = {};
@@ -230,6 +292,16 @@ const main = async () => {
             report3.comments
         );
 
+        await reportData.createReport(
+            report4.title,
+            report4.description,
+            report4.images,
+            report4.date,
+            report4.location,
+            report4.time,
+            report4.comments
+        );
+
         await eventData.createEvent(
             event1.title,
             event1.description,
@@ -258,6 +330,25 @@ const main = async () => {
             event3.location,
             event3.time,
             event3.comments
+        );
+
+        await eventData.createEvent(
+            event4.title,
+            event4.description,
+            event4.images,
+            event4.date,
+            event4.location,
+            event4.time,
+            event4.comments
+        );
+        await eventData.createEvent(
+            event5.title,
+            event5.description,
+            event5.images,
+            event5.date,
+            event5.location,
+            event5.time,
+            event5.comments
         );
 
     } catch (e) {
