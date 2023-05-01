@@ -47,7 +47,22 @@ const report2 = {
     date: '2021-09-01',
     location: '1234 Main St, San Diego, CA 92109',
     time: '12:00 PM',
-    comments: []
+    comments: [
+        {
+            id: 1,
+            text: 'This is a comment',
+            date: '2021-09-01',
+            time: '12:00 PM',
+            user: 'John Doe'
+        },
+        {
+            id: 2,
+            text: 'This is another comment',
+            date: '2021-09-01',
+            time: '12:00 PM',
+            user: 'Jane Doe'
+        }
+    ]
 };
 
 const report3 = {
@@ -68,13 +83,15 @@ const report3 = {
             id: 1,
             text: 'This is a comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '12:00 PM',
+            user: 'John Doe'
         },
         {
             id: 2,
             text: 'This is another comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '12:00 PM',
+            user: 'Jane Doe'
         }
     ]
 };
@@ -95,15 +112,17 @@ const event1 = {
     comments: [
         {
             id: 1,
-            comment: 'This is a comment',
+            text: 'This is a comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '10:00 AM',
+            user: 'John Doe'
         },
         {
             id: 2,
-            comment: 'This is another comment',
+            text: 'This is another comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '12:00 PM',
+            user: 'Jane Doe'
         }
     ]
 };
@@ -124,15 +143,17 @@ const event2 = {
     comments: [
         {
             id: 1,
-            comment: 'This is a comment',
+            text: 'This is a comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '12:00 PM',
+            user: 'John Doe'
         },
         {
             id: 2,
-            comment: 'This is another comment',
+            text: 'This is another comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '12:00 PM',
+            user: 'Jane Doe'
         }
     ]
 };
@@ -153,15 +174,17 @@ const event3 = {
     comments: [
         {
             id: 1,
-            comment: 'This is a comment',
+            text: 'This is a comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '12:00 PM',
+            user: 'John Doe'
         },
         {
             id: 2,
-            comment: 'This is another comment',
+            text: 'This is another comment',
             date: '2021-09-01',
-            time: '12:00 PM'
+            time: '12:00 PM',
+            user: 'Jane Doe'
         }
     ]
 };
