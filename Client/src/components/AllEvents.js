@@ -89,7 +89,7 @@ const AllEvents = () => {
 									}}
 								>
 									<Link
-										to={`/event/${event.id}`}
+										to={`/events/${event._id}`}
 										style={{ textDecoration: 'none' }}
 									>
 										<CardContent sx={{ color: '#fff' }}>

@@ -20,7 +20,7 @@ import data from '../seedData/data';
 
 const Event = () => {
 	let { id } = useParams();
-	id = parseInt(id);
+	id = id.toString();
 
 	const [eventData, setEventData] = useState(undefined);
 	const [loading, setLoading] = useState(true);
@@ -35,25 +35,31 @@ const Event = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
-	useEffect(() => {
-		const response = fetch (
-			`http://localhost:5000/events/${id}`,
-			{
-				method: 'GET',
-				headers: {'Access-Control-Allow-Origin': '*'}
-			}
-		);
-		if (response.status === 200) {
-			const data = response.json();
-			setEventData(data);
-			console.log(data);
-			setLoading(false);
-		} else {
-			setError(`Event with id ${id} not found`);
-			setLoading(false);
+	async function fetchEvent() {
+		try {
+			let url = `http://localhost:5000/events/${id}`;
+			const response = await fetch (
+				url,
+				{
+					method: 'GET',
+					headers: {'Access-Control-Allow-Origin': '*'}
+				}
+			);
+			if (response.status === 200) {
+				const data = await response.json();
+				setEventData(data);
+				console.log(data);
+				setLoading(false);
+			} 
+		} catch (e) {
+			console.log('Failed to get event');
+			console.log(e);
 		}
-	}, [id]);
+	}
 
+	useEffect(() => {
+		fetchEvent();
+	});
 	if (loading) {
 		return (
 			<div>

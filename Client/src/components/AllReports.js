@@ -41,7 +41,7 @@ const AllReports = () => {
 			if (response.status === 200) {
 				const data = await response.json();
 				setReports(data);
-				console.log(data);
+				//console.log(data);
 			}
 		} catch (e) {
 			console.log('Failed to get reports');
@@ -90,7 +90,7 @@ const AllReports = () => {
 									}}
 								>
 									<Link
-										to={`/report/${report.id}`}
+										to={`/reports/${report._id}`}
 										style={{ textDecoration: 'none' }}
 									>
 										<CardContent sx={{ color: '#fff' }}>
