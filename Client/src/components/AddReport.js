@@ -16,6 +16,8 @@ const AddReport = () => {
 	const [title, setTitle] = useState(undefined);
 	const [description, setDescription] = useState(undefined);
 	const [location, setLocation] = useState(undefined);
+	const [image, setImage] = useState(undefined);
+	const [date, setDate] = useState(undefined);
 
 	const handleNameChange = (e) => {
 		setName(e.target.value);
@@ -34,7 +36,11 @@ const AddReport = () => {
 	}
 
 	const handleDateChange = (e) => {
-		setLocation(e.target.value);
+		setDate(e.target.value);
+	}
+
+	const handleImageChange = (e) => {
+		setImage(e.target.value);
 	}
 
 	async function handleSubmit(e) {
@@ -44,8 +50,27 @@ const AddReport = () => {
 		body['title'] = title;
 		body['description'] = description;
 		body['location'] = location;
-
+		body['images'] = [image];
+		body['date'] = date;
+		//body['date'] = new Date().toISOString().slice(0, 10);
+		body['time'] = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+		body['comments'] = []
 		console.log(body);
+
+		try {
+			const response = await fetch(
+				`http://localhost:5000/reports`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*'
+					},
+					body: JSON.stringify(body)
+				}
+			)
+		} catch (e) {
+			console.log(e);
+		}
 		alert('Report Submitted!');
 	}
 
@@ -147,16 +172,17 @@ const AddReport = () => {
 										marginBottom: '10px',
 									}}
 								>
-									Upload Images
+									Upload Image
 								</Typography>
-								<CardMedia
-									component="img"
-									height="140"
-									image="https://source.unsplash.com/random"
-									alt="random"
+								<TextField
+									id="outlined-basic"
+									label="Image Link"
+									variant="outlined"
 									sx={{
-										borderRadius: '10px',
+										width: '100%',
+										marginBottom: '1rem'
 									}}
+									onChange={handleImageChange}
 								/>
 							</CardContent>
 						</Grid>
