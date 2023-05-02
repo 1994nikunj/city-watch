@@ -14,10 +14,6 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import PublishIcon from '@mui/icons-material/Publish';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import Header from './Header';
-import Footer from './Footer';
-import backgroundImage from '../assets/base.jpg';
-
 const buttonStyle = {
 	width: '100%',
 	height: '56px',
@@ -111,167 +107,153 @@ const AddEvent = () => {
 
 	return (
 		<>
-			<div style={{ position: 'relative' }}>
-				<Header />
-				<Box
-					style={{
-						backgroundImage: `url(${backgroundImage})`,
-						backgroundRepeat: 'no-repeat',
-						backgroundSize: 'cover',
-						display: 'flex',
-						height: '98vh',
-						flexDirection: 'column',
-					}}
-				>
-					<Box
+
+			<Box
+				sx={{
+					paddingTop: '7rem',
+					color: '#fff',
+					fontSize: '2rem',
+					m: '1rem 2rem',
+					display: 'flex'
+				}}>
+				Add a new event
+			</Box>
+			<Card
+				sx={{
+					backgroundColor: '#fff',
+					borderRadius: '10px',
+					boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
+					margin: '1rem',
+					height: '60vh',
+				}}
+			>
+				<form onSubmit={handleSubmit}>
+					<Grid
+						container
+						spacing={2}
 						sx={{
-							paddingTop: '7rem',
-							color: '#fff',
-							fontSize: '2rem',
-							m: '1rem 2rem',
-							display: 'flex'
-						}}>
-						Add a new event
-					</Box>
-					<Card
-						sx={{
-							backgroundColor: '#fff',
-							borderRadius: '10px',
-							boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
-							margin: '1rem',
-							height: '60vh',
+							justifyContent: 'center',
+							position: 'relative',
+							textAlign: 'center'
 						}}
 					>
-						<form onSubmit={handleSubmit}>
-							<Grid
-								container
-								spacing={2}
+						<Grid item xs={12} sm={6}>
+
+							<CardContent
 								sx={{
 									justifyContent: 'center',
 									position: 'relative',
-									textAlign: 'center'
+									marginTop: '1rem'
 								}}
 							>
-								<Grid item xs={12} sm={6}>
+								{/* Title */}
+								<TextField
+									id="outlined-basic"
+									label="Event Title"
+									placeholder="A title for the event"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleTitleChange}
+									renderInput={(params) => <TextField {...params} />}
+								/>
 
-									<CardContent
+								{/* Description */}
+								<TextField
+									id="outlined-basic"
+									label="Event Description"
+									placeholder="A little description about the event"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleDescriptionChange}
+									renderInput={(params) => <TextField {...params} />}
+								/>
+
+								{/* Location */}
+								<TextField
+									id="outlined-basic"
+									label="Location"
+									placeholder="Event Location"
+									variant="outlined"
+									sx={{
+										width: '100%',
+										marginBottom: '1rem'
+									}}
+									onChange={handleLocationChange}
+								/>
+
+								{/* Date Picker */}
+								<LocalizationProvider dateAdapter={AdapterDayjs}>
+									<DatePicker
+										label="Event Date"
+										onChange={handleDateChange}
+										value={date}
 										sx={{
-											justifyContent: 'center',
-											position: 'relative',
-											marginTop: '1rem'
+											width: '100%',
+											marginBottom: '1rem'
 										}}
-									>
-										{/* Title */}
+									/>
+								</LocalizationProvider>
+
+								{/* Time Picker */}
+								<LocalizationProvider dateAdapter={AdapterDayjs}>
+									<TimePicker
+										label="Event Time"
+										onChange={handleTimeChange}
+										value={time}
+										sx={{
+											width: '100%',
+											marginBottom: '1rem'
+										}}
+									/>
+								</LocalizationProvider>
+
+								<Grid container spacing={2}>
+									<Grid item xs={9}>
 										<TextField
 											id="outlined-basic"
-											label="Event Title"
-											placeholder="A title for the event"
+											label="Event Image link(s)"
 											variant="outlined"
 											sx={{
 												width: '100%',
 												marginBottom: '1rem'
 											}}
-											onChange={handleTitleChange}
-											renderInput={(params) => <TextField {...params} />}
+											onChange={handleImageChange}
 										/>
-
-										{/* Description */}
-										<TextField
-											id="outlined-basic"
-											label="Event Description"
-											placeholder="A little description about the event"
-											variant="outlined"
-											sx={{
-												width: '100%',
-												marginBottom: '1rem'
-											}}
-											onChange={handleDescriptionChange}
-											renderInput={(params) => <TextField {...params} />}
-										/>
-
-										{/* Location */}
-										<TextField
-											id="outlined-basic"
-											label="Location"
-											placeholder="Event Location"
-											variant="outlined"
-											sx={{
-												width: '100%',
-												marginBottom: '1rem'
-											}}
-											onChange={handleLocationChange}
-										/>
-
-										{/* Date Picker */}
-										<LocalizationProvider dateAdapter={AdapterDayjs}>
-											<DatePicker
-												label="Event Date"
-												onChange={handleDateChange}
-												value={date}
-												sx={{
-													width: '100%',
-													marginBottom: '1rem'
-												}}
-											/>
-										</LocalizationProvider>
-
-										{/* Time Picker */}
-										<LocalizationProvider dateAdapter={AdapterDayjs}>
-											<TimePicker
-												label="Event Time"
-												onChange={handleTimeChange}
-												value={time}
-												sx={{
-													width: '100%',
-													marginBottom: '1rem'
-												}}
-											/>
-										</LocalizationProvider>
-
-										<Grid container spacing={2}>
-											<Grid item xs={9}>
-												<TextField
-													id="outlined-basic"
-													label="Event Image link(s)"
-													variant="outlined"
-													sx={{
-														width: '100%',
-														marginBottom: '1rem'
-													}}
-													onChange={handleImageChange}
-												/>
-											</Grid>
-											<Grid item xs={3}>
-												<Button
-													variant="contained"
-													color="primary"
-													startIcon={<AddPhotoAlternateIcon />}
-													onClick={() => handleAddImage()}
-													sx={buttonStyle2}
-												>
-													Add MORE
-												</Button>
-											</Grid>
-										</Grid>
-
+									</Grid>
+									<Grid item xs={3}>
 										<Button
 											variant="contained"
 											color="primary"
-											startIcon={<PublishIcon />}
-											onClick={handleSubmit}
-											sx={buttonStyle}
+											startIcon={<AddPhotoAlternateIcon />}
+											onClick={() => handleAddImage()}
+											sx={buttonStyle2}
 										>
-											Submit Event!
+											Add MORE
 										</Button>
-
-									</CardContent>
+									</Grid>
 								</Grid>
-							</Grid>
-						</form>
-					</Card>
-				</Box>
-				<Footer />
-			</div>
+
+								<Button
+									variant="contained"
+									color="primary"
+									startIcon={<PublishIcon />}
+									onClick={handleSubmit}
+									sx={buttonStyle}
+								>
+									Submit Event!
+								</Button>
+
+							</CardContent>
+						</Grid>
+					</Grid>
+				</form>
+			</Card>
 		</>
 	);
 }

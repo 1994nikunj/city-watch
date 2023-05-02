@@ -17,10 +17,6 @@ import MobileStepper from '@mui/material/MobileStepper';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
-import Header from './Header';
-import Footer from './Footer';
-import backgroundImage from '../assets/base.jpg';
-
 const Report = () => {
 	let { id } = useParams();
 	id = id.toString();
@@ -120,190 +116,175 @@ const Report = () => {
 	} else {
 		return (
 			<>
-				<div style={{ position: 'relative' }}>
-					<Header />
-					<Box
-						style={{
-							backgroundImage: `url(${backgroundImage})`,
-							backgroundRepeat: 'no-repeat',
-							backgroundSize: 'cover',
-							display: 'flex',
-							height: '98vh',
-							flexDirection: 'column',
+				<Box
+					sx={{
+						paddingTop: '7rem',
+						color: '#fff',
+						fontSize: '2rem',
+						m: '1rem 2rem'
+					}}>
+					<Card
+						sx={{
+							backgroundColor: '#fff',
+							borderRadius: '10px',
+							boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
+							margin: '1rem',
+							flex: 1,
+							height: '60vh',
 						}}
 					>
-						<Box
+						{/* Card Header --------------- START */}
+						<CardHeader
+							avatar={
+								<Avatar>
+									{reportData.title[0]}
+								</Avatar>
+							}
+							title={reportData.title}
+							subheader={reportData.date + '  |  ' + reportData.time + '  |  ' + reportData.location}
 							sx={{
-								paddingTop: '7rem',
-								color: '#fff',
-								fontSize: '2rem',
-								m: '1rem 2rem'
-							}}>
-							<Card
-								sx={{
-									backgroundColor: '#fff',
-									borderRadius: '10px',
-									boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
-									margin: '1rem',
-									flex: 1,
-									height: '60vh',
-								}}
-							>
-								{/* Card Header --------------- START */}
-								<CardHeader
-									avatar={
-										<Avatar>
-											{reportData.title[0]}
-										</Avatar>
-									}
-									title={reportData.title}
-									subheader={reportData.date + '  |  ' + reportData.time + '  |  ' + reportData.location}
+								color: 'rgb(200, 200, 200, 0.7)'
+							}}
+						/>
+						{/* Card Header --------------- END */}
+
+						{/* Image Carousel --------------- START */}
+						<Grid container spacing={2}>
+							<Grid item xs={12} sm={6}>
+								<CardContent
 									sx={{
-										color: 'rgb(200, 200, 200, 0.7)'
+										justifyContent: 'center',
+										position: 'relative',
 									}}
-								/>
-								{/* Card Header --------------- END */}
-
-								{/* Image Carousel --------------- START */}
-								<Grid container spacing={2}>
-									<Grid item xs={12} sm={6}>
-										<CardContent
-											sx={{
-												justifyContent: 'center',
-												position: 'relative',
-											}}
-										>
-											<Typography
-												variant="body2"
-												color="text.secondary"
-												sx={{
-													fontSize: '1.2rem',
-													fontWeight: 'bold',
-													marginBottom: '10px',
-												}}
+								>
+									<Typography
+										variant="body2"
+										color="text.secondary"
+										sx={{
+											fontSize: '1.2rem',
+											fontWeight: 'bold',
+											marginBottom: '10px',
+										}}
+									>
+										Description
+									</Typography>
+									<Typography
+										variant="body2"
+										color="text.secondary"
+										sx={{
+											fontSize: '1rem',
+											marginBottom: '10px',
+										}}
+									>
+										{reportData.description}
+									</Typography>
+									<CardMedia
+										component='img'
+										image={reportData.images[activeStep]}
+										alt={reportData.images[activeStep]}
+										style={{
+											height: '300px',
+											width: '100%',
+											objectFit: 'cover',
+											borderRadius: '10px',
+											boxShadow: '-2px 2px 10px #000',
+											position: 'relative',
+											left: '50%',
+											transform: 'translateX(-50%)',
+										}}
+									/>
+									<MobileStepper
+										steps={reportData.images.length}
+										position="static"
+										activeStep={activeStep}
+										sx={{
+											backgroundColor: 'rgba(0, 0, 0, 0.0)',
+										}}
+										nextButton={
+											<Button
+												size="small"
+												onClick={handleNext}
+												disabled={activeStep === reportData.images.length - 1}
 											>
-												Description
-											</Typography>
-											<Typography
-												variant="body2"
-												color="text.secondary"
-												sx={{
-													fontSize: '1rem',
-													marginBottom: '10px',
-												}}
+												Next<KeyboardArrowRight />
+											</Button>
+										}
+										backButton={
+											<Button
+												size="small"
+												onClick={handleBack}
+												disabled={activeStep === 0}
 											>
-												{reportData.description}
-											</Typography>
-											<CardMedia
-												component='img'
-												image={reportData.images[activeStep]}
-												alt={reportData.images[activeStep]}
-												style={{
-													height: '300px',
-													width: '100%',
-													objectFit: 'cover',
-													borderRadius: '10px',
-													boxShadow: '-2px 2px 10px #000',
-													position: 'relative',
-													left: '50%',
-													transform: 'translateX(-50%)',
-												}}
-											/>
-											<MobileStepper
-												steps={reportData.images.length}
-												position="static"
-												activeStep={activeStep}
-												sx={{
-													backgroundColor: 'rgba(0, 0, 0, 0.0)',
-												}}
-												nextButton={
-													<Button
-														size="small"
-														onClick={handleNext}
-														disabled={activeStep === reportData.images.length - 1}
-													>
-														Next<KeyboardArrowRight />
-													</Button>
-												}
-												backButton={
-													<Button
-														size="small"
-														onClick={handleBack}
-														disabled={activeStep === 0}
-													>
-														<KeyboardArrowLeft />Back
-													</Button>
-												}
-											/>
-										</CardContent>
-									</Grid>
-									{/* Image Container --------------- END */}
+												<KeyboardArrowLeft />Back
+											</Button>
+										}
+									/>
+								</CardContent>
+							</Grid>
+							{/* Image Container --------------- END */}
 
-									{/* Item Description --------------- START */}
-									<Grid item xs={12} sm={6}>
-										<CardContent
-											sx={{
-												padding: '10px',
-												textAlign: 'left',
-												margin: '10px',
-											}}
-										>
-											{/* Comments section */}
-											<Box>
-												<Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-													Comments
-												</Typography>
+							{/* Item Description --------------- START */}
+							<Grid item xs={12} sm={6}>
+								<CardContent
+									sx={{
+										padding: '10px',
+										textAlign: 'left',
+										margin: '10px',
+									}}
+								>
+									{/* Comments section */}
+									<Box>
+										<Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+											Comments
+										</Typography>
 
-												{reportData.comments.length !== 0 ? (
-													<Box sx={{ marginTop: '10px' }}>
-														{reportData.comments.map((comment, index) => (
-															<Box key={index}>
-																<Grid container alignItems="center">
-																	<Grid item xs={2.5}>
-																		<CardHeader
-																			avatar={<Avatar>{comment.avatar}</Avatar>}
-																			title={comment.user}
-																			subheader={comment.date}
-																		/>
-																	</Grid>
-																	<Grid item xs={9.5}>
-																		<Typography variant="body2" color="text.secondary">
-																			{comment.text}
-																		</Typography>
-																	</Grid>
-																</Grid>
-																<Divider sx={{ marginBottom: '10px' }} />
-															</Box>
-														))}
+										{reportData.comments.length !== 0 ? (
+											<Box sx={{ marginTop: '10px' }}>
+												{reportData.comments.map((comment, index) => (
+													<Box key={index}>
+														<Grid container alignItems="center">
+															<Grid item xs={2.5}>
+																<CardHeader
+																	avatar={<Avatar>{comment.avatar}</Avatar>}
+																	title={comment.user}
+																	subheader={comment.date}
+																/>
+															</Grid>
+															<Grid item xs={9.5}>
+																<Typography variant="body2" color="text.secondary">
+																	{comment.text}
+																</Typography>
+															</Grid>
+														</Grid>
+														<Divider sx={{ marginBottom: '10px' }} />
 													</Box>
-												) : (
-													<Typography variant="body2" color="text.secondary" sx={{ fontSize: '1rem', marginBottom: '10px', fontStyle: 'italic' }}>
-														There are no comments yet.
-													</Typography>
-												)}
-
-												{/* Comment Form */}
-												<Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px' }}>
-													Add Comment
-												</Typography>
-												<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-													<TextField onChange={handleNameChange} label="Name" variant="outlined" fullWidth sx={{ marginBottom: '5px' }} />
-													<TextField onChange={handleCommentChange} label="Comment" variant="outlined" rows={1} fullWidth sx={{ marginBottom: '5px' }} />
-													<Button onClick={handleSubmit} variant="contained" color="primary" sx={{ fontWeight: 'bold', width: '150px' }}>
-														Submit
-													</Button>
-												</Box>
+												))}
 											</Box>
+										) : (
+											<Typography variant="body2" color="text.secondary" sx={{ fontSize: '1rem', marginBottom: '10px', fontStyle: 'italic' }}>
+												There are no comments yet.
+											</Typography>
+										)}
 
-										</CardContent>
-										{/* Item Description --------------- END */}
-									</Grid>
-								</Grid>
-							</Card>
-						</Box>
-					</Box>
-					<Footer />
-				</div>
+										{/* Comment Form */}
+										<Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px' }}>
+											Add Comment
+										</Typography>
+										<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+											<TextField onChange={handleNameChange} label="Name" variant="outlined" fullWidth sx={{ marginBottom: '5px' }} />
+											<TextField onChange={handleCommentChange} label="Comment" variant="outlined" rows={1} fullWidth sx={{ marginBottom: '5px' }} />
+											<Button onClick={handleSubmit} variant="contained" color="primary" sx={{ fontWeight: 'bold', width: '150px' }}>
+												Submit
+											</Button>
+										</Box>
+									</Box>
+
+								</CardContent>
+								{/* Item Description --------------- END */}
+							</Grid>
+						</Grid>
+					</Card>
+				</Box>
 			</>
 		);
 	}

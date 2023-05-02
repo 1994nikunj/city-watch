@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
 	Checkbox,
@@ -14,12 +14,6 @@ import logo from '../assets/logo_large.png';
 import backgroundImage from '../assets/base.jpg';
 
 const Login = () => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-
-	function handleSubmit(e) {
-
-	}
 	const [checked, setChecked] = React.useState(true);
 
 	const handleChange = (event) => {

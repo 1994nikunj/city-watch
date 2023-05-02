@@ -1,45 +1,30 @@
 const reports = [
 	{
 		id: 1,
-		title: 'Graffiti',
-		description: 'Graffiti is writing or drawings made on a wall or other surface, usually without permission and within public view.',
+		title: 'Unauthorized graffiti on store wall',
+		description: 'I notice a weird graffitti on the shop next doors.',
 		images: [
 			'https://th.bing.com/th/id/OIP.zqPlkWZ3EJH6t19TA_C3nAHaEL?pid=ImgDet&rs=1',
 			'https://cdn.britannica.com/93/171293-050-D99BEDB2/Graffiti-Berlin-Wall.jpg',
 			'https://static.dw.com/image/16379135_303.jpg',
 			'https://static01.nyt.com/images/2020/07/06/nyregion/nygraffiti-06/nygraffiti-06-articleLarge.jpg?quality=75&auto=webp&disable=upscale'
 		],
-		date: '2021-09-01',
-		location: '1234 Main St, San Diego, CA 92109',
-		time: '12:00 PM',
-		comments: [
-			{
-				id: 1,
-				comment: 'This is a comment',
-				date: '2021-09-01',
-				time: '12:00 PM',
-				author: 'John Doe'
-			},
-			{
-				id: 2,
-				comment: 'This is another comment',
-				date: '2021-09-01',
-				time: '12:00 PM',
-				author: 'Jane Doe'
-			}
-		]
+		date: '2023-05-01',
+		location: '722 Garden St, Hoboken, NJ 07030',
+		time: '08:00 AM',
+		comments: []
 	},
 	{
 		id: 2,
-		title: 'Potholes',
-		description: 'A pothole is a depression in a road surface, usually asphalt pavement, where traffic has removed broken pieces of the pavement.',
+		title: 'Pile of Trash',
+		description: 'Someone has been constantly piling garbage next to the Bus Stop on Lincoln St.',
 		images: [
 			'https://th.bing.com/th/id/R.d55de9a594834aa131ba7fb3946efda6?rik=dP2ewhYVi4oddQ&riu=http%3a%2f%2fwww.automoblog.net%2fwp-content%2fuploads%2f2017%2f05%2fPotHole.jpg&ehk=uuFtDGr%2bExacfmZnMx635qxvCsNW4MyDIpzA2Gkkdqk%3d&risl=&pid=ImgRaw&r=0',
 			'https://th.bing.com/th/id/R.d55de9a594834aa131ba7fb3946efda6?rik=dP2ewhYVi4oddQ&riu=http%3a%2f%2fwww.automoblog.net%2fwp-content%2fuploads%2f2017%2f05%2fPotHole.jpg&ehk=uuFtDGr%2bExacfmZnMx635qxvCsNW4MyDIpzA2Gkkdqk%3d&risl=&pid=ImgRaw&r=0',
 			'https://th.bing.com/th/id/R.d55de9a594834aa131ba7fb3946efda6?rik=dP2ewhYVi4oddQ&riu=http%3a%2f%2fwww.automoblog.net%2fwp-content%2fuploads%2f2017%2f05%2fPotHole.jpg&ehk=uuFtDGr%2bExacfmZnMx635qxvCsNW4MyDIpzA2Gkkdqk%3d&risl=&pid=ImgRaw&r=0',
 			'https://th.bing.com/th/id/R.d55de9a594834aa131ba7fb3946efda6?rik=dP2ewhYVi4oddQ&riu=http%3a%2f%2fwww.automoblog.net%2fwp-content%2fuploads%2f2017%2f05%2fPotHole.jpg&ehk=uuFtDGr%2bExacfmZnMx635qxvCsNW4MyDIpzA2Gkkdqk%3d&risl=&pid=ImgRaw&r=0'
 		],
-		date: '2021-09-01',
+		date: '2023-04-01',
 		location: '1234 Main St, San Diego, CA 92109',
 		time: '12:00 PM',
 		comments: []
@@ -54,7 +39,7 @@ const reports = [
 			'https://th.bing.com/th/id/R.a758268923df50e618b54899db2c3c8c?rik=mqHyrTRXqMBlgA&riu=http%3a%2f%2fwww.photos-public-domain.com%2fwp-content%2fuploads%2f2011%2f03%2fgarbage-cans-overflowing.jpg&ehk=p78Xn8C9jN%2friDPhIeKZmtgKZqA3KRW5Lt8SbSCed9U%3d&risl=&pid=ImgRaw&r=0',
 			'https://th.bing.com/th/id/R.a758268923df50e618b54899db2c3c8c?rik=mqHyrTRXqMBlgA&riu=http%3a%2f%2fwww.photos-public-domain.com%2fwp-content%2fuploads%2f2011%2f03%2fgarbage-cans-overflowing.jpg&ehk=p78Xn8C9jN%2friDPhIeKZmtgKZqA3KRW5Lt8SbSCed9U%3d&risl=&pid=ImgRaw&r=0'
 		],
-		date: '2021-09-01',
+		date: '2023-04-01',
 		location: '1234 Main St, San Diego, CA 92109',
 		time: '12:00 PM',
 		comments: [

@@ -87,26 +87,20 @@ const Header = ({ username }) => {
 				<Typography variant="h5"> Welcome, {uname}! </Typography>
 			</Grid>
 
-			<Grid
-				item
-				xs={8}
-				style={{
-					marginLeft: 'auto',
-					marginRight: '0.5rem',
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center'
-				}}
-			>
-				<NavigationButton to="/home" icon={<HomeIcon />} label='Home' />
-				<NavigationButton to="/reports" icon={<ReportIcon />} label='Report List' />
-				<NavigationButton to="/add-report" icon={<FlagCircleIcon />} label='Add Report' />
-				<NavigationButton to="/events" icon={<EventIcon />} label='Event List' />
-				<NavigationButton to="/add-event" icon={<AddCircleIcon />} label='Add Event' />
-				<NavigationButton to="/help" icon={<HelpIcon />} label='Help' />
-				<NavigationButton to="/profile" icon={<ProfileIcon />} label='Profile' />
-				<NavigationButton to="/" icon={<LogoutIcon />} label='Logout' />
-			</Grid>
+			<NavigationButton to="/home" icon={<HomeIcon />} label='Home' />
+			<NavigationButton to="/reports" icon={<ReportIcon />} label='Report List' />
+			<NavigationButton to="/add-report" icon={<FlagCircleIcon />} label='Add Report' />
+			<NavigationButton to="/events" icon={<EventIcon />} label='Event List' />
+			<NavigationButton to="/add-event" icon={<AddCircleIcon />} label='Add Event' />
+			<NavigationButton to="/help" icon={<HelpIcon />} label='Help' />
+			<NavigationButton to="/profile" icon={<ProfileIcon />} label='Profile' />
+			<NavigationButton
+				to="/"
+				icon={<LogoutIcon />}
+				label='Logout'
+				onClick={() => alert('Logout successful!')}
+			/>
+
 		</Grid>
 	);
 };

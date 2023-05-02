@@ -12,10 +12,6 @@ import {
 	TextField
 } from '@mui/material';
 
-import Header from './Header';
-import Footer from './Footer';
-import backgroundImage from '../assets/base.jpg';
-
 const avatarStyle = {
 	width: '200px',
 	height: '200px',
@@ -158,258 +154,243 @@ const Profile = () => {
 
 	return (
 		<>
-			<div style={{ position: 'relative' }}>
-				<Header />
-				<Box
-					style={{
-						backgroundImage: `url(${backgroundImage})`,
-						backgroundRepeat: 'no-repeat',
-						backgroundSize: 'cover',
+			<Grid
+				container
+				spacing={2}
+				sx={{
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'center',
+					alignItems: 'center',
+					paddingTop: '8rem',
+				}}
+			>
+
+				{/* Column 1 */}
+				<Grid item xs={6}
+					sx={{
 						display: 'flex',
-						height: '98vh',
 						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'center',
 					}}
 				>
-					<Grid
-						container
-						spacing={2}
+					<Typography sx={{
+						fontSize: '1.9rem',
+						fontWeight: 'bold',
+						color: '#D7D7D7',
+						marginBottom: '1rem',
+					}}>
+						User Profile
+					</Typography>
+
+					<Box
 						sx={{
 							display: 'flex',
 							flexDirection: 'row',
-							justifyContent: 'center',
-							alignItems: 'center',
-							paddingTop: '8rem',
-						}}
-					>
-
-						{/* Column 1 */}
-						<Grid item xs={6}
-							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}
+							flex: '1'
+						}}>
+						<Avatar
+							sx={avatarStyle}
+							src={avatar}
+						/>
+						<Button
+							sx={editButtonStyle}
+							variant="contained"
+							onClick={handleEdit}
 						>
-							<Typography sx={{
-								fontSize: '1.9rem',
-								fontWeight: 'bold',
-								color: '#D7D7D7',
-								marginBottom: '1rem',
-							}}>
-								User Profile
-							</Typography>
+							{edit ? 'Save Profile' : 'Edit Profile'}
+						</Button>
+						{edit ? (
+							<Input
+								sx={avatarInputStyle}
+								placeholder="Enter new avatar URL"
+								value={avatar}
+								onChange={handleAvatarChange}
+							/>
+						) : (<></>)}
+					</Box>
 
-							<Box
-								sx={{
-									display: 'flex',
-									flexDirection: 'row',
-									flex: '1'
-								}}>
-								<Avatar
-									sx={avatarStyle}
-									src={avatar}
-								/>
-								<Button
-									sx={editButtonStyle}
-									variant="contained"
-									onClick={handleEdit}
-								>
-									{edit ? 'Save Profile' : 'Edit Profile'}
-								</Button>
-								{edit ? (
-									<Input
-										sx={avatarInputStyle}
-										placeholder="Enter new avatar URL"
-										value={avatar}
-										onChange={handleAvatarChange}
-									/>
-								) : (<></>)}
-							</Box>
+					{/* Basic Stats */}
+					<Box
+						sx={{
+							marginTop: '1rem',
+							display: 'flex',
+							flexDirection: 'column'
+						}}>
+						<Typography sx={headerStyle}>Basic Stats</Typography>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<Typography sx={statsKeyStyle}>Number of problems reported</Typography>
+							<Typography sx={statsValueStyle}>5</Typography>
+						</Box>
 
-							{/* Basic Stats */}
-							<Box
-								sx={{
-									marginTop: '1rem',
-									display: 'flex',
-									flexDirection: 'column'
-								}}>
-								<Typography sx={headerStyle}>Basic Stats</Typography>
-								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-									<Typography sx={statsKeyStyle}>Number of problems reported</Typography>
-									<Typography sx={statsValueStyle}>5</Typography>
-								</Box>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<Typography sx={statsKeyStyle}>Number of events reported</Typography>
+							<Typography sx={statsValueStyle}>5</Typography>
+						</Box>
+					</Box>
 
-								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-									<Typography sx={statsKeyStyle}>Number of events reported</Typography>
-									<Typography sx={statsValueStyle}>5</Typography>
-								</Box>
-							</Box>
-
-							{/* Interests */}
-							<Box
-								sx={{
-									marginTop: '2rem',
-									display: 'flex',
-									flexDirection: 'column',
-									justifyContent: 'space-between'
-								}}>
-								<Typography marginBottom={1} sx={headerStyle}>Interests</Typography>
-								{edit ? (
-									<Stack direction="row" spacing={1}>
-										{interests.map((interest, index) => (
-											<Chip
-												key={index}
-												label={interest}
-												onDelete={() => handleRemoveInterest(index)}
-												sx={{
-													border: 'none',
-													margin: '0',
-													color: '#fff',
-													'.MuiChip-deleteIcon': {
-														color: 'red'
-													}
-												}}
-											/>
-										))}
-										<Chip
-											label={
-												<TextField
-													value={newInterest}
-													onChange={(e) => setNewInterest(e.target.value)}
-													placeholder="Add Interest"
-													sx={{
-														border: 'none',
-														margin: '0',
-														'& .MuiInputBase-root': {
-															color: '#fff',
-															border: 'none',
-															margin: '0',
-															padding: '0',
-														},
-														'& .MuiOutlinedInput-notchedOutline': {
-															border: 'none',
-															margin: '0',
-															padding: '0',
-														},
-													}}
-												/>
+					{/* Interests */}
+					<Box
+						sx={{
+							marginTop: '2rem',
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'space-between'
+						}}>
+						<Typography marginBottom={1} sx={headerStyle}>Interests</Typography>
+						{edit ? (
+							<Stack direction="row" spacing={1}>
+								{interests.map((interest, index) => (
+									<Chip
+										key={index}
+										label={interest}
+										onDelete={() => handleRemoveInterest(index)}
+										sx={{
+											border: 'none',
+											margin: '0',
+											color: '#fff',
+											'.MuiChip-deleteIcon': {
+												color: 'red'
 											}
-											onDelete={handleAddInterest}
+										}}
+									/>
+								))}
+								<Chip
+									label={
+										<TextField
+											value={newInterest}
+											onChange={(e) => setNewInterest(e.target.value)}
+											placeholder="Add Interest"
 											sx={{
 												border: 'none',
-												width: '170px',
 												margin: '0',
-												'.MuiChip-deleteIcon': {
-													color: 'green'
-												}
-											}}
-										/>
-									</Stack>
-								) : (
-									<Stack direction="row" spacing={1}>
-										{interests.map((interest) => (
-											<Chip key={interest} label={interest}
-												sx={{
+												'& .MuiInputBase-root': {
+													color: '#fff',
 													border: 'none',
 													margin: '0',
-													color: '#fff',
-													background: 'linear-gradient(90deg, #fff8, #fff1)'
-												}}
-											/>
-										))}
-									</Stack>
-								)}
-							</Box>
-						</Grid>
+													padding: '0',
+												},
+												'& .MuiOutlinedInput-notchedOutline': {
+													border: 'none',
+													margin: '0',
+													padding: '0',
+												},
+											}}
+										/>
+									}
+									onDelete={handleAddInterest}
+									sx={{
+										border: 'none',
+										width: '170px',
+										margin: '0',
+										'.MuiChip-deleteIcon': {
+											color: 'green'
+										}
+									}}
+								/>
+							</Stack>
+						) : (
+							<Stack direction="row" spacing={1}>
+								{interests.map((interest) => (
+									<Chip key={interest} label={interest}
+										sx={{
+											border: 'none',
+											margin: '0',
+											color: '#fff',
+											background: 'linear-gradient(90deg, #fff8, #fff1)'
+										}}
+									/>
+								))}
+							</Stack>
+						)}
+					</Box>
+				</Grid>
 
-						{/* Column 2 */}
-						<Grid item xs={6}
-							sx={{
-								display: 'flex'
-							}}
-						>
-							{/* Basic Information */}
-							<Box
+				{/* Column 2 */}
+				<Grid item xs={6}
+					sx={{
+						display: 'flex'
+					}}
+				>
+					{/* Basic Information */}
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'column'
+						}}>
+						<Typography sx={headerStyle}>Basic Information</Typography>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<InputLabel sx={infoKeyStyle}>Name</InputLabel>
+							<Input
 								sx={{
-									display: 'flex',
-									flexDirection: 'column'
-								}}>
-								<Typography sx={headerStyle}>Basic Information</Typography>
-								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-									<InputLabel sx={infoKeyStyle}>Name</InputLabel>
-									<Input
-										sx={{
-											...infoValueStyle,
-											...(focusedInput === 'name' && focusedInfoValueStyle),
-										}}
-										value={name}
-										onFocus={() => setFocusedInput('name')}
-										onChange={(e) => setName(e.target.value)}
-										disabled={!edit}
-									/>
-								</Box>
+									...infoValueStyle,
+									...(focusedInput === 'name' && focusedInfoValueStyle),
+								}}
+								value={name}
+								onFocus={() => setFocusedInput('name')}
+								onChange={(e) => setName(e.target.value)}
+								disabled={!edit}
+							/>
+						</Box>
 
-								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-									<InputLabel sx={infoKeyStyle}>Email</InputLabel>
-									<Input
-										sx={{
-											...infoValueStyle,
-											...(focusedInput === 'email' && focusedInfoValueStyle),
-										}}
-										value={email}
-										onFocus={() => setFocusedInput('email')}
-										onChange={(e) => setEmail(e.target.value)}
-										disabled={!edit}
-									/>
-								</Box>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<InputLabel sx={infoKeyStyle}>Email</InputLabel>
+							<Input
+								sx={{
+									...infoValueStyle,
+									...(focusedInput === 'email' && focusedInfoValueStyle),
+								}}
+								value={email}
+								onFocus={() => setFocusedInput('email')}
+								onChange={(e) => setEmail(e.target.value)}
+								disabled={!edit}
+							/>
+						</Box>
 
-								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-									<InputLabel sx={infoKeyStyle}>Age</InputLabel>
-									<Input
-										sx={{
-											...infoValueStyle,
-											...(focusedInput === 'age' && focusedInfoValueStyle),
-										}}
-										value={age} onFocus={() => setFocusedInput('age')}
-										onChange={(e) => setAge(e.target.value)}
-										disabled={!edit}
-									/>
-								</Box>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<InputLabel sx={infoKeyStyle}>Age</InputLabel>
+							<Input
+								sx={{
+									...infoValueStyle,
+									...(focusedInput === 'age' && focusedInfoValueStyle),
+								}}
+								value={age} onFocus={() => setFocusedInput('age')}
+								onChange={(e) => setAge(e.target.value)}
+								disabled={!edit}
+							/>
+						</Box>
 
-								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-									<InputLabel sx={infoKeyStyle}>Address</InputLabel>
-									<Input
-										sx={{
-											...infoValueStyle,
-											...(focusedInput === 'address' && focusedInfoValueStyle),
-										}}
-										value={address}
-										onFocus={() => setFocusedInput('address')}
-										onChange={(e) => setAddress(e.target.value)}
-										disabled={!edit}
-									/>
-								</Box>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<InputLabel sx={infoKeyStyle}>Address</InputLabel>
+							<Input
+								sx={{
+									...infoValueStyle,
+									...(focusedInput === 'address' && focusedInfoValueStyle),
+								}}
+								value={address}
+								onFocus={() => setFocusedInput('address')}
+								onChange={(e) => setAddress(e.target.value)}
+								disabled={!edit}
+							/>
+						</Box>
 
-								<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-									<InputLabel sx={infoKeyStyle}>Profession</InputLabel>
-									<Input
-										sx={{
-											...infoValueStyle,
-											...(focusedInput === 'profession' && focusedInfoValueStyle),
-										}}
-										value={profession}
-										onFocus={() => setFocusedInput('profession')}
-										onChange={(e) => setProfession(e.target.value)}
-										disabled={!edit}
-									/>
-								</Box>
-							</Box>
-						</Grid>
-					</Grid>
-				</Box>
-				<Footer />
-			</div>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<InputLabel sx={infoKeyStyle}>Profession</InputLabel>
+							<Input
+								sx={{
+									...infoValueStyle,
+									...(focusedInput === 'profession' && focusedInfoValueStyle),
+								}}
+								value={profession}
+								onFocus={() => setFocusedInput('profession')}
+								onChange={(e) => setProfession(e.target.value)}
+								disabled={!edit}
+							/>
+						</Box>
+					</Box>
+				</Grid>
+			</Grid>
 		</>
 	);
 }

@@ -14,39 +14,60 @@ import Profile from './components/Profile';
 import Feedback from './components/Feedback';
 import NotFound from './components/NotFound';
 
+import { Box } from '@mui/material';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import backgroundImage from './assets/base.jpg';
+
 import './App.css';
 
 const App = () => {
 	return (
 		<Router>
-			<div className='App'>
-				<div className='App-body'>
-					<Routes>
-						<Route path='/' element={<Login />} />					{/* Login Page */}
-						<Route path='/signup' element={<Signup />} />			{/* Sign Up Page */}
+			<div style={{ position: 'relative' }}>
+				<Header />
+				<Box
+					style={{
+						backgroundImage: `url(${backgroundImage})`,
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: 'cover',
+						display: 'flex',
+						height: '98vh',
+						flexDirection: 'column',
+					}}
+				>
+					<div className='App'>
+						<div className='App-body'>
+							<Routes>
+								<Route path='/' element={<Login />} />					{/* Login Page */}
+								<Route path='/signup' element={<Signup />} />			{/* Sign Up Page */}
 
-						<Route path='/home' element={<Home />} />				{/* Home Page */}
+								<Route path='/home' element={<Home />} />				{/* Home Page */}
 
-						{/* Reports */}
-						<Route path='/reports' element={<AllReports />} /> 		{/* All Reports Page */}
-						<Route path='/reports/:id' element={<Report />} />		{/* Single Report Page */}
-						<Route path='/add-report' element={<AddReport />} />	{/* Add Report Page */}
+								{/* Reports */}
+								<Route path='/reports' element={<AllReports />} /> 		{/* All Reports Page */}
+								<Route path='/reports/:id' element={<Report />} />		{/* Single Report Page */}
+								<Route path='/add-report' element={<AddReport />} />	{/* Add Report Page */}
 
-						{/* Events */}
-						<Route path='/events' element={<AllEvents />} />		{/* All Events Page */}
-						<Route path='/events/:id' element={<Event />} />			{/* Single Event Page */}
-						<Route path='/add-event' element={<AddEvent />} />		{/* Add Event Page */}
+								{/* Events */}
+								<Route path='/events' element={<AllEvents />} />		{/* All Events Page */}
+								<Route path='/events/:id' element={<Event />} />			{/* Single Event Page */}
+								<Route path='/add-event' element={<AddEvent />} />		{/* Add Event Page */}
 
-						<Route path='/help' element={<Help />} />				{/* Help Page */}
-						<Route path='/profile' element={<Profile />} />			{/* Profile Page */}
-						<Route path='/feedback' element={<Feedback />} />		{/* Feedback Page */}
+								<Route path='/help' element={<Help />} />				{/* Help Page */}
+								<Route path='/profile' element={<Profile />} />			{/* Profile Page */}
+								<Route path='/feedback' element={<Feedback />} />		{/* Feedback Page */}
 
-						<Route path='/signout' />
-						<Route path="*" element={<NotFound />} />				{/* Page Not Found */}
+								<Route path='/signout' />
+								<Route path="*" element={<NotFound />} />				{/* Page Not Found */}
 
-					</Routes>
-				</div>
+							</Routes>
+						</div>
+					</div>
+				</Box>
 			</div>
+			<Footer />
 		</Router>
 	);
 };
