@@ -31,6 +31,8 @@ This application is built using [`MERN`](https://www.mongodb.com/mern-stack) sta
 # cd into directory
 > cd city-watch
 ```
+### Step II. Database Setup
+Set up a mongoDB connection on mongodb://localhost:27017
 
 ### Step II. Backend Setup
 ```shell
